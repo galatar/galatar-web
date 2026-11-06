@@ -1,0 +1,66 @@
+---
+// Barra de progreso del taller. El avance se guarda solo en el navegador
+// de quien lo visita (localStorage); si no está disponible, se queda en 0.
+interface Props {
+  taller: string;
+  total: number;
+}
+const { taller, total } = Astro.props;
+---
+
+<div class="progreso" data-progreso data-taller={taller} data-total={total}>
+  <div class="progreso__texto">
+    <span>Progreso del taller</span>
+    <strong><span data-hechos>0</span>/{total}</strong>
+  </div>
+  <div class="progreso__barra" role="progressbar" aria-valuemin="0" aria-valuemax={total} aria-valuenow="0" aria-label="Módulos completados">
+    <div class="progreso__relleno" data-relleno></div>
+  </div>
+</div>
+
+<script>
+  import { leerHechos } from '../lib/progreso';
+
+  function pintar() {
+    document.querySelectorAll<HTMLElement>('[data-progreso]').forEach((caja) => {
+      const taller = caja.dataset.taller ?? '';
+      const total = Number(caja.dataset.total ?? 0);
+      const hechos = leerHechos(taller).filter((n) => n >= 1 && n <= total).length;
+      caja.querySelector('[data-hechos]')!.textContent = String(hechos);
+      caja.querySelector<HTMLElement>('[data-relleno]')!.style.width = `${total ? (hechos / total) * 100 : 0}%`;
+      caja.querySelector('[role=progressbar]')!.setAttribute('aria-valuenow', String(hechos));
+    });
+  }
+
+  pintar();
+  document.addEventListener('galatar:progreso', pintar);
+</script>
+
+<style>
+  .progreso {
+    display: grid;
+    gap: 0.5rem;
+  }
+  .progreso__texto {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--texto-2);
+  }
+  .progreso__texto strong {
+    color: var(--oro-suave);
+  }
+  .progreso__barra {
+    height: 8px;
+    border-radius: 999px;
+    background: var(--noche-3);
+    border: 1px solid var(--linea);
+    overflow: hidden;
+  }
+  .progreso__relleno {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, var(--granate), var(--oro));
+    transition: width 0.4s ease;
+  }
+</style>

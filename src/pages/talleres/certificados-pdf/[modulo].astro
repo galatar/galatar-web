@@ -1,0 +1,242 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import Progreso from '../../../components/Progreso.astro';
+
+const TALLER = 'certificados-pdf';
+const slug = (id: string) => id.split('/').pop()!;
+
+export async function getStaticPaths() {
+  const modulos = (await getCollection('lecciones', (l) => l.data.taller === 'certificados-pdf')).sort(
+    (a, b) => a.data.modulo - b.data.modulo,
+  );
+  return modulos.map((leccion, i) => ({
+    params: { modulo: leccion.id.split('/').pop() },
+    props: { leccion, anterior: modulos[i - 1], siguiente: modulos[i + 1], total: modulos.length },
+  }));
+}
+
+const { leccion, anterior, siguiente, total } = Astro.props;
+const { Content } = await render(leccion);
+const base = `/talleres/${TALLER}`;
+---
+
+<Base titulo={`Módulo ${leccion.data.modulo}. ${leccion.data.titulo}`} descripcion={leccion.data.resumen}>
+  <div class="contenedor leccion">
+    <nav class="miga" aria-label="Migas">
+      <a href={`${base}/`}>Genera certificados en PDF desde Excel</a>
+    </nav>
+
+    <header class="leccion__cabeza">
+      <span class="etiqueta">Módulo {leccion.data.modulo} de {total} · {leccion.data.minutos} min</span>
+      <h1>{leccion.data.titulo}</h1>
+      <p class="leccion__resumen">{leccion.data.resumen}</p>
+      <Progreso taller={TALLER} total={total} />
+    </header>
+
+    <article class="prosa">
+      <Content />
+    </article>
+
+    <div class="completar tarjeta">
+      <p>¿Has terminado este módulo?</p>
+      <button class="boton" type="button" data-completar data-modulo={leccion.data.modulo} aria-pressed="false">
+        Marcar como completado
+      </button>
+    </div>
+
+    <nav class="pasos" aria-label="Módulos">
+      {
+        anterior ? (
+          <a class="pasos__enlace" href={`${base}/${slug(anterior.id)}/`}>
+            <span>← Anterior</span>
+            <strong>{anterior.data.titulo}</strong>
+          </a>
+        ) : (
+          <span />
+        )
+      }
+      {
+        siguiente ? (
+          <a class="pasos__enlace pasos__enlace--sig" href={`${base}/${slug(siguiente.id)}/`}>
+            <span>Siguiente →</span>
+            <strong>{siguiente.data.titulo}</strong>
+          </a>
+        ) : (
+          <a class="pasos__enlace pasos__enlace--sig" href={`${base}/`}>
+            <span>Fin del taller →</span>
+            <strong>Volver al recorrido</strong>
+          </a>
+        )
+      }
+    </nav>
+  </div>
+</Base>
+
+<script>
+  import { leerHechos, marcar } from '../../../lib/progreso';
+
+  const boton = document.querySelector<HTMLButtonElement>('[data-completar]');
+  if (boton) {
+    const modulo = Number(boton.dataset.modulo);
+    const pintar = () => {
+      const hecho = leerHechos('certificados-pdf').includes(modulo);
+      boton.setAttribute('aria-pressed', String(hecho));
+      boton.textContent = hecho ? '✓ Completado' : 'Marcar como completado';
+      boton.classList.toggle('boton--secundario', hecho);
+    };
+    boton.addEventListener('click', () => {
+      marcar('certificados-pdf', modulo, boton.getAttribute('aria-pressed') !== 'true');
+      pintar();
+    });
+    pintar();
+  }
+</script>
+
+<style>
+  .leccion {
+    max-width: calc(var(--ancho-texto) + 3rem);
+    padding-top: 2.5rem;
+  }
+
+  .miga a {
+    font-size: 0.92rem;
+    color: var(--texto-2);
+    text-decoration: none;
+  }
+
+  .miga a::before {
+    content: '← ';
+  }
+
+  .leccion__cabeza {
+    margin: 1.5rem 0 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--linea);
+  }
+
+  .leccion__resumen {
+    font-size: 1.15rem;
+    color: var(--texto-2);
+    margin-bottom: 1.5rem;
+  }
+
+  .prosa :global(h2) {
+    font-size: 1.55rem;
+    margin-top: 2.2em;
+    color: var(--oro-suave);
+  }
+
+  .prosa :global(h2:first-child) {
+    margin-top: 0;
+  }
+
+  .prosa :global(ul),
+  .prosa :global(ol) {
+    padding-left: 1.3rem;
+    margin: 0 0 1.25em;
+  }
+
+  .prosa :global(li) {
+    margin-bottom: 0.4em;
+  }
+
+  .prosa :global(li::marker) {
+    color: var(--oro);
+  }
+
+  .prosa :global(strong) {
+    color: var(--texto);
+  }
+
+  .prosa :global(blockquote) {
+    margin: 2rem 0;
+    padding: 1rem 1.25rem;
+    border-left: 3px solid var(--granate);
+    background: rgba(160, 26, 66, 0.12);
+    border-radius: 0 var(--radio) var(--radio) 0;
+    color: var(--texto-2);
+  }
+
+  .prosa :global(blockquote p:last-child) {
+    margin: 0;
+  }
+
+  .prosa :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    margin: 0 0 1.5em;
+    display: block;
+    overflow-x: auto;
+  }
+
+  .prosa :global(th),
+  .prosa :global(td) {
+    border: 1px solid var(--linea);
+    padding: 0.5rem 0.7rem;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  .prosa :global(th) {
+    background: var(--noche-3);
+    color: var(--oro-suave);
+    font-family: var(--f-codigo);
+    font-weight: 600;
+  }
+
+  .completar {
+    margin-top: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .completar p {
+    margin: 0;
+    font-weight: 700;
+  }
+
+  .pasos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .pasos__enlace {
+    display: grid;
+    gap: 0.2rem;
+    padding: 1rem;
+    border: 1px solid var(--linea);
+    border-radius: var(--radio);
+    text-decoration: none;
+    color: var(--texto);
+  }
+
+  .pasos__enlace:hover {
+    border-color: var(--linea-fuerte);
+    background: rgba(240, 177, 63, 0.05);
+  }
+
+  .pasos__enlace span {
+    font-size: 0.85rem;
+    color: var(--texto-3);
+  }
+
+  .pasos__enlace--sig {
+    text-align: right;
+  }
+
+  @media (max-width: 520px) {
+    .pasos {
+      grid-template-columns: 1fr;
+    }
+    .pasos__enlace--sig {
+      text-align: left;
+    }
+  }
+</style>

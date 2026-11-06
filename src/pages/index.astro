@@ -1,0 +1,311 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Estrella from '../components/Estrella.astro';
+import logo from '../assets/logo-avatar-galatar.png';
+
+const talleres = [
+  {
+    titulo: 'Genera certificados en PDF desde Excel',
+    texto: 'Una hoja con 100 asistentes, 100 certificados listos en segundos.',
+    estado: 'Disponible',
+    href: '/talleres/certificados-pdf/',
+    activo: true,
+  },
+  {
+    titulo: 'Une y limpia varios Excel',
+    texto: 'Junta los archivos de todo el equipo en uno y quita los duplicados.',
+    estado: 'Próximamente',
+    activo: false,
+  },
+  {
+    titulo: 'Renombra cientos de archivos',
+    texto: 'Pon orden en carpetas enteras con una regla que tú decides.',
+    estado: 'Próximamente',
+    activo: false,
+  },
+  {
+    titulo: 'Clasifica documentos con IA',
+    texto: 'Que un modelo lea tus PDF y te diga de qué trata cada uno.',
+    estado: 'Próximamente',
+    activo: false,
+  },
+];
+
+const pasos = [
+  {
+    n: '1',
+    titulo: 'Ves el resultado',
+    texto: 'Antes de escribir una línea de código, generas cien documentos de golpe. Sabes para qué sirve lo que vas a aprender.',
+  },
+  {
+    n: '2',
+    titulo: 'Entiendes cómo',
+    texto: 'Después descubres que Python va recorriendo las filas de tu Excel. El bucle aparece cuando lo necesitas, no antes.',
+  },
+  {
+    n: '3',
+    titulo: 'Lo haces tuyo',
+    texto: 'Cambias el diseño, los textos y las columnas. Terminas con una herramienta adaptada a tu trabajo real.',
+  },
+];
+---
+
+<Base titulo="Galatar">
+  <section class="portada contenedor">
+    <div class="portada__texto">
+      <span class="etiqueta">Aprende · Crea · Avanza</span>
+      <h1>Deja de hacer a mano lo que un programa hace en segundos.</h1>
+      <p class="portada__entrada">
+        Talleres cortos de Excel, Python e IA para quien trabaja en una oficina. Sales con una
+        herramienta que funciona y sabiendo cómo está hecha.
+      </p>
+      <div class="portada__acciones">
+        <a class="boton" href="/talleres/certificados-pdf/">Empieza el primer taller</a>
+        <a class="boton boton--secundario" href="#mapa">Ver el mapa</a>
+      </div>
+    </div>
+    <div class="portada__torre" aria-hidden="true">
+      <Image src={logo} alt="" width={420} height={420} loading="eager" />
+    </div>
+  </section>
+
+  <section id="mapa" class="mapa contenedor">
+    <span class="etiqueta">El mapa de Galatar</span>
+    <h2>Cada taller es una estrella</h2>
+    <p class="mapa__entrada">
+      Empezamos por una. Las demás se irán encendiendo a medida que estén listas.
+    </p>
+    <ol class="mapa__lista">
+      {
+        talleres.map((t) => (
+          <li class:list={['tarjeta', { 'mapa__item--apagado': !t.activo }]}>
+            <div class="mapa__cabeza">
+              <Estrella tam={t.activo ? 30 : 22} encendida={t.activo} />
+              <span class:list={['mapa__estado', { 'mapa__estado--activo': t.activo }]}>
+                {t.estado}
+              </span>
+            </div>
+            <h3>
+              {t.href ? <a href={t.href} class="mapa__enlace">{t.titulo}</a> : t.titulo}
+            </h3>
+            <p>{t.texto}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section id="metodo" class="metodo contenedor">
+    <span class="etiqueta">Cómo enseñamos</span>
+    <h2>Primero el resultado, después el código</h2>
+    <p class="metodo__entrada">
+      Aquí no se aprende Python por aprender Python. Se aprende a resolver un problema concreto
+      y, cuando hace falta, se explica el código que lo resuelve.
+    </p>
+    <ol class="metodo__pasos">
+      {
+        pasos.map((p) => (
+          <li>
+            <span class="metodo__n" aria-hidden="true">{p.n}</span>
+            <h3>{p.titulo}</h3>
+            <p>{p.texto}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="cierre contenedor">
+    <div class="tarjeta cierre__caja">
+      <Estrella tam={36} />
+      <h2>Una herramienta que puedas usar mañana</h2>
+      <p>
+        Cada taller incluye una plantilla Excel, el programa Python con su código y un manual
+        para adaptarlo. Sin plataforma, sin claves, sin instalar nada raro.
+      </p>
+      <a class="boton" href="/talleres/certificados-pdf/">Ver el taller de certificados</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .portada {
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+    padding-block: 4rem 3rem;
+  }
+
+  @media (min-width: 860px) {
+    .portada {
+      grid-template-columns: 1.25fr 1fr;
+      padding-block: 6rem 5rem;
+    }
+  }
+
+  .portada__entrada {
+    font-size: 1.2rem;
+    color: var(--texto-2);
+    max-width: 34rem;
+  }
+
+  .portada__acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+  }
+
+  .portada__torre {
+    justify-self: center;
+    max-width: 22rem;
+    width: 75%;
+    border-radius: 50%;
+    box-shadow: 0 0 90px rgba(240, 177, 63, 0.18), 0 0 180px rgba(160, 26, 66, 0.25);
+  }
+
+  .portada__torre :global(img) {
+    border-radius: 50%;
+  }
+
+  .mapa,
+  .metodo,
+  .cierre {
+    padding-block: 3.5rem;
+  }
+
+  .mapa__entrada,
+  .metodo__entrada {
+    color: var(--texto-2);
+    max-width: var(--ancho-texto);
+  }
+
+  .mapa__lista {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  }
+
+  .mapa__lista > li {
+    position: relative;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .mapa__lista > li:first-child {
+    border-color: var(--linea-fuerte);
+    box-shadow: 0 0 40px rgba(240, 177, 63, 0.08);
+  }
+
+  .mapa__lista > li:first-child:hover {
+    transform: translateY(-2px);
+    border-color: var(--oro);
+  }
+
+  .mapa__item--apagado {
+    opacity: 0.72;
+  }
+
+  .mapa__item--apagado h3 {
+    color: var(--texto-2);
+  }
+
+  .mapa__lista p {
+    color: var(--texto-2);
+    font-size: 0.98rem;
+    margin: 0;
+  }
+
+  .mapa__cabeza {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    min-height: 30px;
+  }
+
+  .mapa__estado {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--texto-3);
+  }
+
+  .mapa__estado--activo {
+    color: var(--oro);
+  }
+
+  .mapa__enlace {
+    color: var(--texto);
+    text-decoration: none;
+  }
+
+  .mapa__enlace::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radio);
+  }
+
+  .mapa__enlace:hover {
+    color: var(--oro-suave);
+  }
+
+  .metodo__pasos {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    counter-reset: none;
+  }
+
+  .metodo__pasos li {
+    border-top: 1px solid var(--linea-fuerte);
+    padding-top: 1.25rem;
+  }
+
+  .metodo__pasos p {
+    color: var(--texto-2);
+    margin: 0;
+  }
+
+  .metodo__n {
+    display: inline-grid;
+    place-items: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+    background: var(--granate);
+    color: var(--texto);
+    font-family: var(--f-titulo);
+    font-weight: 600;
+    margin-bottom: 0.9rem;
+  }
+
+  .cierre__caja {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background:
+      radial-gradient(ellipse at top, rgba(160, 26, 66, 0.3), transparent 70%),
+      linear-gradient(180deg, rgba(31, 18, 33, 0.9), rgba(21, 12, 23, 0.9));
+  }
+
+  .cierre__caja :global(.estrella) {
+    margin-bottom: 1rem;
+  }
+
+  .cierre__caja p {
+    color: var(--texto-2);
+    max-width: 36rem;
+    margin-bottom: 1.75rem;
+  }
+</style>

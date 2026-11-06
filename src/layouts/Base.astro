@@ -1,0 +1,170 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo-avatar-galatar.png';
+import '../styles/global.css';
+
+interface Props {
+  titulo: string;
+  descripcion?: string;
+}
+
+const {
+  titulo,
+  descripcion = 'Plantillas, scripts y prompts para quitarte el trabajo repetitivo de la oficina. Aprende, crea y avanza.',
+} = Astro.props;
+const tituloCompleto = titulo === 'Galatar' ? 'Galatar · Aprende, crea, avanza' : `${titulo} · Galatar`;
+const canonica = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{tituloCompleto}</title>
+    <meta name="description" content={descripcion} />
+    <link rel="canonical" href={canonica} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta property="og:title" content={tituloCompleto} />
+    <meta property="og:description" content={descripcion} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+    <meta name="theme-color" content="#0b0710" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Fraunces:opsz,wght@9..144,500;9..144,600&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="saltar sr-only" href="#contenido">Saltar al contenido</a>
+    <header class="cabecera">
+      <div class="contenedor cabecera__fila">
+        <a class="marca" href="/" aria-label="Galatar, inicio">
+          <Image src={logo} alt="" width={44} height={44} class="marca__logo" />
+          <span class="marca__nombre">Galatar</span>
+        </a>
+        <nav aria-label="Principal">
+          <ul class="menu">
+            <li><a href="/#mapa">Talleres</a></li>
+            <li><a href="/#metodo">Cómo enseñamos</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="contenido">
+      <slot />
+    </main>
+
+    <footer class="pie">
+      <div class="contenedor pie__fila">
+        <p class="pie__lema">Plantillas · Scripts · Prompts</p>
+        <p class="pie__nota">
+          Galatar es un proyecto de Juanan Ruiz. Esta web es un prototipo en construcción.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .saltar:focus {
+    position: fixed;
+    top: 0.5rem;
+    left: 0.5rem;
+    width: auto;
+    height: auto;
+    clip: auto;
+    padding: 0.5rem 1rem;
+    background: var(--oro);
+    color: #1a0d05;
+    z-index: 10;
+    border-radius: 8px;
+  }
+
+  .cabecera {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: rgba(11, 7, 16, 0.78);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--linea);
+  }
+
+  .cabecera__fila {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 4.25rem;
+  }
+
+  .marca {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    text-decoration: none;
+    color: var(--texto);
+  }
+
+  .marca__logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+  }
+
+  .marca__nombre {
+    font-family: var(--f-titulo);
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  .menu {
+    display: flex;
+    gap: 1.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 0.95rem;
+  }
+
+  .menu a {
+    color: var(--texto-2);
+    text-decoration: none;
+  }
+
+  .menu a:hover {
+    color: var(--oro-suave);
+  }
+
+  @media (max-width: 420px) {
+    .menu { gap: 0.85rem; font-size: 0.88rem; }
+    .marca__nombre { font-size: 1.2rem; }
+  }
+
+  .pie {
+    margin-top: 5rem;
+    border-top: 1px solid var(--linea);
+    padding-block: 2.5rem;
+    color: var(--texto-3);
+    font-size: 0.92rem;
+  }
+
+  .pie__fila {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 2rem;
+  }
+
+  .pie__lema {
+    color: var(--oro);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+</style>

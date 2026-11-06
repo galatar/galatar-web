@@ -1,0 +1,322 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import Progreso from '../../../components/Progreso.astro';
+import Estrella from '../../../components/Estrella.astro';
+import portada from '../../../assets/hero.png';
+
+const TALLER = 'certificados-pdf';
+const modulos = (await getCollection('lecciones', (l) => l.data.taller === TALLER)).sort(
+  (a, b) => a.data.modulo - b.data.modulo,
+);
+const minutos = modulos.reduce((suma, m) => suma + m.data.minutos, 0);
+const slug = (id: string) => id.split('/').pop();
+
+const recursos = [
+  { titulo: 'Plantilla Excel', detalle: 'Archivo de prácticas' },
+  { titulo: 'Automatización Python', detalle: 'Programa y código fuente' },
+  { titulo: 'Manual de uso', detalle: 'Guía en PDF' },
+];
+---
+
+<Base
+  titulo="Genera certificados en PDF desde Excel"
+  descripcion="Taller práctico para principiantes: convierte una hoja de Excel en cien certificados PDF personalizados con un pequeño programa en Python."
+>
+  <section class="cabeza">
+    <Image src={portada} alt="" widths={[800, 1600]} sizes="100vw" class="cabeza__fondo" loading="eager" />
+    <div class="contenedor cabeza__contenido">
+      <a class="miga" href="/#mapa">← El mapa de Galatar</a>
+      <span class="etiqueta">Taller 1 · Excel + Python + PDF</span>
+      <h1>Genera certificados en PDF desde Excel</h1>
+      <p class="cabeza__entrada">
+        Una hoja con cien asistentes, cien certificados listos en segundos. Y al acabar sabrás
+        cómo funciona y cómo adaptarlo a tus propios documentos.
+      </p>
+      <ul class="datos" aria-label="Datos del taller">
+        <li><strong>Nivel</strong> Principiante</li>
+        <li><strong>Duración</strong> {minutos} minutos</li>
+        <li><strong>Incluye</strong> Recursos descargables</li>
+      </ul>
+      <a class="boton" href={`/talleres/${TALLER}/${slug(modulos[0].id)}/`}>Empezar el módulo 1</a>
+    </div>
+  </section>
+
+  <div class="contenedor cuerpo">
+    <section class="recorrido" aria-labelledby="titulo-recorrido">
+      <h2 id="titulo-recorrido">Tu recorrido de aprendizaje</h2>
+      <div class="tarjeta recorrido__caja">
+        <Progreso taller={TALLER} total={modulos.length} />
+        <ol class="modulos">
+          {
+            modulos.map((m) => (
+              <li data-modulo={m.data.modulo}>
+                <a href={`/talleres/${TALLER}/${slug(m.id)}/`}>
+                  <span class="modulos__marca" aria-hidden="true" />
+                  <span class="modulos__texto">
+                    <span class="modulos__titulo">
+                      Módulo {m.data.modulo}. {m.data.titulo}
+                    </span>
+                    <span class="modulos__resumen">{m.data.resumen}</span>
+                  </span>
+                  <span class="modulos__min">{m.data.minutos} min</span>
+                  <span class="sr-only" data-estado>Pendiente</span>
+                </a>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </section>
+
+    <aside class="lateral">
+      <section class="tarjeta">
+        <h2 class="lateral__titulo">Al terminar te llevas</h2>
+        <ul class="recursos">
+          {
+            recursos.map((r) => (
+              <li>
+                <Estrella tam={18} />
+                <span>
+                  <strong>{r.titulo}</strong>
+                  <span class="recursos__detalle">{r.detalle}</span>
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="aviso">Prototipo: las descargas están en preparación.</p>
+      </section>
+
+      <section class="tarjeta">
+        <h2 class="lateral__titulo">Cómo está pensado</h2>
+        <p class="lateral__texto">
+          No necesitas saber qué es un bucle antes de empezar. Primero generas los documentos,
+          después entiendes que Python recorre las filas del Excel y al final modificas el
+          programa para hacerlo tuyo.
+        </p>
+      </section>
+    </aside>
+  </div>
+</Base>
+
+<script>
+  import { leerHechos } from '../../../lib/progreso';
+
+  function marcarLista() {
+    const hechos = new Set(leerHechos('certificados-pdf'));
+    document.querySelectorAll<HTMLElement>('[data-modulo]').forEach((li) => {
+      const hecho = hechos.has(Number(li.dataset.modulo));
+      li.classList.toggle('hecho', hecho);
+      li.querySelector('[data-estado]')!.textContent = hecho ? 'Completado' : 'Pendiente';
+    });
+  }
+  marcarLista();
+</script>
+
+<style>
+  .cabeza {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--linea);
+  }
+
+  .cabeza__fondo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.22;
+    filter: saturate(0.6) hue-rotate(-20deg);
+    mask-image: linear-gradient(180deg, #000 30%, transparent);
+  }
+
+  .cabeza__contenido {
+    position: relative;
+    padding-block: 3rem 3.5rem;
+  }
+
+  .cabeza__entrada {
+    font-size: 1.15rem;
+    color: var(--texto-2);
+    max-width: 38rem;
+  }
+
+  .miga {
+    display: table;
+    margin-bottom: 1.5rem;
+    font-size: 0.92rem;
+    color: var(--texto-2);
+    text-decoration: none;
+  }
+
+  .datos {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .datos li {
+    background: rgba(21, 12, 23, 0.85);
+    border: 1px solid var(--linea);
+    border-radius: 999px;
+    padding: 0.35rem 0.9rem;
+    font-size: 0.92rem;
+    color: var(--texto-2);
+  }
+
+  .datos strong {
+    color: var(--oro-suave);
+    margin-right: 0.35rem;
+    font-weight: 700;
+  }
+
+  .cuerpo {
+    display: grid;
+    gap: 2rem;
+    padding-top: 3rem;
+  }
+
+  @media (min-width: 900px) {
+    .cuerpo {
+      grid-template-columns: 1.6fr 1fr;
+      align-items: start;
+    }
+  }
+
+  .recorrido__caja {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .modulos {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .modulos a {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0.9rem;
+    align-items: start;
+    padding: 0.9rem 1rem;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    text-decoration: none;
+    color: var(--texto);
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+
+  .modulos a:hover {
+    background: rgba(240, 177, 63, 0.06);
+    border-color: var(--linea);
+  }
+
+  .modulos__marca {
+    width: 1.3rem;
+    height: 1.3rem;
+    margin-top: 0.15rem;
+    border-radius: 6px;
+    border: 2px solid var(--linea-fuerte);
+    display: grid;
+    place-items: center;
+  }
+
+  .hecho .modulos__marca {
+    background: var(--oro);
+    border-color: var(--oro);
+  }
+
+  .hecho .modulos__marca::after {
+    content: '';
+    width: 0.35rem;
+    height: 0.65rem;
+    border: solid #1a0d05;
+    border-width: 0 2.5px 2.5px 0;
+    transform: rotate(45deg) translate(-1px, -1px);
+  }
+
+  .modulos__texto {
+    display: grid;
+    gap: 0.15rem;
+  }
+
+  .modulos__titulo {
+    font-weight: 700;
+  }
+
+  .modulos__resumen {
+    font-size: 0.93rem;
+    color: var(--texto-2);
+  }
+
+  .modulos__min {
+    font-size: 0.85rem;
+    color: var(--texto-3);
+    white-space: nowrap;
+  }
+
+  .lateral {
+    display: grid;
+    gap: 1rem;
+  }
+
+  @media (min-width: 900px) {
+    .lateral {
+      margin-top: 3.4rem;
+    }
+  }
+
+  .lateral__titulo {
+    font-size: 1.2rem;
+  }
+
+  .lateral__texto {
+    color: var(--texto-2);
+    margin: 0;
+    font-size: 0.98rem;
+  }
+
+  .recursos {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .recursos li {
+    display: flex;
+    gap: 0.75rem;
+    align-items: start;
+  }
+
+  .recursos li :global(.estrella) {
+    margin-top: 0.25rem;
+  }
+
+  .recursos strong {
+    display: block;
+  }
+
+  .recursos__detalle {
+    font-size: 0.9rem;
+    color: var(--texto-2);
+  }
+
+  .aviso {
+    font-size: 0.85rem;
+    color: var(--texto-3);
+    border-top: 1px solid var(--linea);
+    padding-top: 0.9rem;
+    margin: 0;
+  }
+</style>
