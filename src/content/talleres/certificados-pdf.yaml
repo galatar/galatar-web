@@ -1,0 +1,24 @@
+estado: disponible
+orden: 1
+titulo: Genera certificados en PDF desde Excel
+tarjeta: Una hoja con 100 asistentes, 100 certificados listos en segundos.
+descripcion: >-
+  Taller práctico para principiantes: convierte una hoja de Excel en cien certificados PDF
+  personalizados con un pequeño programa en Python.
+etiqueta: Excel + Python + PDF
+entrada: >-
+  Una hoja con cien asistentes, cien certificados listos en segundos. Y al acabar sabrás
+  cómo funciona y cómo adaptarlo a tus propios documentos.
+nivel: Principiante
+portada: ../../assets/hero.png
+enfoque: >-
+  No necesitas saber qué es un bucle antes de empezar. Primero generas los documentos,
+  después entiendes que Python recorre las filas del Excel y al final modificas el
+  programa para hacerlo tuyo.
+recursos:
+  - titulo: Plantilla Excel
+    detalle: Archivo de prácticas
+  - titulo: Automatización Python
+    detalle: Programa y código fuente
+  - titulo: Manual de uso
+    detalle: Guía en PDF

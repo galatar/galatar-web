@@ -3,34 +3,20 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Estrella from '../components/Estrella.astro';
 import logo from '../assets/logo-avatar-galatar.png';
+import { talleres as todosLosTalleres, urlTaller } from '../lib/talleres';
 
-const talleres = [
-  {
-    titulo: 'Genera certificados en PDF desde Excel',
-    texto: 'Una hoja con 100 asistentes, 100 certificados listos en segundos.',
-    estado: 'Disponible',
-    href: '/talleres/certificados-pdf/',
-    activo: true,
-  },
-  {
-    titulo: 'Une y limpia varios Excel',
-    texto: 'Junta los archivos de todo el equipo en uno y quita los duplicados.',
-    estado: 'Próximamente',
-    activo: false,
-  },
-  {
-    titulo: 'Renombra cientos de archivos',
-    texto: 'Pon orden en carpetas enteras con una regla que tú decides.',
-    estado: 'Próximamente',
-    activo: false,
-  },
-  {
-    titulo: 'Clasifica documentos con IA',
-    texto: 'Que un modelo lea tus PDF y te diga de qué trata cada uno.',
-    estado: 'Próximamente',
-    activo: false,
-  },
-];
+// El mapa sale de src/content/talleres/: cada ficha es una estrella.
+const talleres = (await todosLosTalleres()).map((t) => {
+  const activo = t.data.estado === 'disponible';
+  return {
+    titulo: t.data.titulo,
+    texto: t.data.tarjeta,
+    estado: activo ? 'Disponible' : 'Próximamente',
+    href: activo ? urlTaller(t.id) : undefined,
+    activo,
+  };
+});
+const primero = talleres.find((t) => t.activo);
 
 const pasos = [
   {
@@ -61,7 +47,7 @@ const pasos = [
         herramienta que funciona y sabiendo cómo está hecha.
       </p>
       <div class="portada__acciones">
-        <a class="boton" href="/talleres/certificados-pdf/">Empieza el primer taller</a>
+        {primero && <a class="boton" href={primero.href}>Empieza el primer taller</a>}
         <a class="boton boton--secundario" href="#mapa">Ver el mapa</a>
       </div>
     </div>

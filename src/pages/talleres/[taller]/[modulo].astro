@@ -1,37 +1,52 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
 import Progreso from '../../../components/Progreso.astro';
-
-const TALLER = 'certificados-pdf';
-const slug = (id: string) => id.split('/').pop()!;
+import {
+  leccionesDe,
+  slugModulo,
+  talleresDisponibles,
+  urlModulo,
+  urlTaller,
+  type Leccion,
+  type TallerDisponible,
+} from '../../../lib/talleres';
 
 export async function getStaticPaths() {
-  const modulos = (await getCollection('lecciones', (l) => l.data.taller === 'certificados-pdf')).sort(
-    (a, b) => a.data.modulo - b.data.modulo,
-  );
-  return modulos.map((leccion, i) => ({
-    params: { modulo: leccion.id.split('/').pop() },
-    props: { leccion, anterior: modulos[i - 1], siguiente: modulos[i + 1], total: modulos.length },
-  }));
+  const rutas = [];
+  for (const taller of await talleresDisponibles()) {
+    const modulos = await leccionesDe(taller.id);
+    rutas.push(
+      ...modulos.map((leccion, i) => ({
+        params: { taller: taller.id, modulo: slugModulo(leccion) },
+        props: { taller, leccion, anterior: modulos[i - 1], siguiente: modulos[i + 1], total: modulos.length },
+      })),
+    );
+  }
+  return rutas;
 }
 
-const { leccion, anterior, siguiente, total } = Astro.props;
+const { taller, leccion, anterior, siguiente, total } = Astro.props as {
+  taller: TallerDisponible;
+  leccion: Leccion;
+  anterior?: Leccion;
+  siguiente?: Leccion;
+  total: number;
+};
 const { Content } = await render(leccion);
-const base = `/talleres/${TALLER}`;
 ---
 
 <Base titulo={`Módulo ${leccion.data.modulo}. ${leccion.data.titulo}`} descripcion={leccion.data.resumen}>
   <div class="contenedor leccion">
     <nav class="miga" aria-label="Migas">
-      <a href={`${base}/`}>Genera certificados en PDF desde Excel</a>
+      <a href={urlTaller(taller.id)}>{taller.data.titulo}</a>
     </nav>
 
     <header class="leccion__cabeza">
       <span class="etiqueta">Módulo {leccion.data.modulo} de {total} · {leccion.data.minutos} min</span>
       <h1>{leccion.data.titulo}</h1>
       <p class="leccion__resumen">{leccion.data.resumen}</p>
-      <Progreso taller={TALLER} total={total} />
+      <Progreso taller={taller.id} total={total} />
     </header>
 
     <article class="prosa">
@@ -40,7 +55,7 @@ const base = `/talleres/${TALLER}`;
 
     <div class="completar tarjeta">
       <p>¿Has terminado este módulo?</p>
-      <button class="boton" type="button" data-completar data-modulo={leccion.data.modulo} aria-pressed="false">
+      <button class="boton" type="button" data-completar data-taller={taller.id} data-modulo={leccion.data.modulo} aria-pressed="false">
         Marcar como completado
       </button>
     </div>
@@ -48,7 +63,7 @@ const base = `/talleres/${TALLER}`;
     <nav class="pasos" aria-label="Módulos">
       {
         anterior ? (
-          <a class="pasos__enlace" href={`${base}/${slug(anterior.id)}/`}>
+          <a class="pasos__enlace" href={urlModulo(anterior)}>
             <span>← Anterior</span>
             <strong>{anterior.data.titulo}</strong>
           </a>
@@ -58,12 +73,12 @@ const base = `/talleres/${TALLER}`;
       }
       {
         siguiente ? (
-          <a class="pasos__enlace pasos__enlace--sig" href={`${base}/${slug(siguiente.id)}/`}>
+          <a class="pasos__enlace pasos__enlace--sig" href={urlModulo(siguiente)}>
             <span>Siguiente →</span>
             <strong>{siguiente.data.titulo}</strong>
           </a>
         ) : (
-          <a class="pasos__enlace pasos__enlace--sig" href={`${base}/`}>
+          <a class="pasos__enlace pasos__enlace--sig" href={urlTaller(taller.id)}>
             <span>Fin del taller →</span>
             <strong>Volver al recorrido</strong>
           </a>
@@ -78,15 +93,16 @@ const base = `/talleres/${TALLER}`;
 
   const boton = document.querySelector<HTMLButtonElement>('[data-completar]');
   if (boton) {
+    const taller = boton.dataset.taller ?? '';
     const modulo = Number(boton.dataset.modulo);
     const pintar = () => {
-      const hecho = leerHechos('certificados-pdf').includes(modulo);
+      const hecho = leerHechos(taller).includes(modulo);
       boton.setAttribute('aria-pressed', String(hecho));
       boton.textContent = hecho ? '✓ Completado' : 'Marcar como completado';
       boton.classList.toggle('boton--secundario', hecho);
     };
     boton.addEventListener('click', () => {
-      marcar('certificados-pdf', modulo, boton.getAttribute('aria-pressed') !== 'true');
+      marcar(taller, modulo, boton.getAttribute('aria-pressed') !== 'true');
       pintar();
     });
     pintar();

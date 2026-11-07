@@ -12,8 +12,12 @@ npm run build    # genera dist/
 
 ## Estructura
 
-- `src/pages/` — portada y páginas de cada taller.
+- `src/pages/` — portada y rutas dinámicas de los talleres (`talleres/[taller]/`).
+- `src/content/talleres/<taller>.yaml` — ficha de cada taller (`estado: disponible` o `proximamente`). El nombre del archivo es el slug.
 - `src/content/lecciones/<taller>/modulo-N.md` — las lecciones (frontmatter: taller, modulo, titulo, resumen, minutos).
+- `src/lib/talleres.ts` — consultas y URLs de talleres y lecciones.
+
+Para añadir un taller basta con crear su ficha YAML y sus lecciones; no hay que tocar las páginas.
 - `src/lib/progreso.ts` — progreso del alumno, guardado solo en su navegador.
 - `public/descargas/` — recursos descargables de los talleres (pendiente).
 
