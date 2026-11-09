@@ -1,0 +1,25 @@
+estado: disponible
+orden: 3
+titulo: Certificados en PDF con un agente de IA
+tarjeta: Un agente trabaja en tu carpeta, escribe el programa y lo prueba.
+descripcion: >-
+  Taller práctico para principiantes: un agente de IA trabaja dentro de tu carpeta, instala
+  Python, escribe el programa y genera cien certificados PDF desde Excel mientras tú decides.
+etiqueta: Excel + Python + IA (agente)
+entrada: >-
+  Le explicas el proyecto una vez, en un archivo de instrucciones, y el agente se pone a
+  trabajar: crea los archivos, ejecuta el programa y corrige sus propios errores. Tú apruebas
+  cada paso y revisas el resultado.
+nivel: Principiante
+portada: ../../assets/hero.png
+enfoque: >-
+  Sirve con cualquier agente: Claude, Codex, Cursor o Copilot. Aprenderás a preparar una
+  carpeta que la IA entienda, a aprobar solo lo que comprendes y a iterar sobre la plantilla,
+  el Excel y el programa sin perder el control.
+recursos:
+  - titulo: Carpeta de inicio
+    detalle: Estructura y archivo de instrucciones
+  - titulo: Peticiones para el agente
+    detalle: Textos listos para copiar y pegar
+  - titulo: Chat o agente
+    detalle: Comparativa para elegir herramienta

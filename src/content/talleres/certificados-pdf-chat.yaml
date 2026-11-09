@@ -1,0 +1,25 @@
+estado: disponible
+orden: 2
+titulo: Certificados en PDF con un chat de IA
+tarjeta: Tú describes lo que quieres; un chat gratuito escribe el programa.
+descripcion: >-
+  Taller práctico para principiantes: genera cien certificados PDF desde Excel sin escribir
+  código. Un chat de IA gratuito te guía para instalar Python y escribe el programa contigo.
+etiqueta: Excel + Python + IA (chat)
+entrada: >-
+  No hace falta saber programar ni copiar código de nadie. Describes el certificado que
+  necesitas, el chat escribe el programa y tú lo pruebas, lo corriges y lo mejoras en tu
+  propia carpeta.
+nivel: Principiante
+portada: ../../assets/hero.png
+enfoque: >-
+  Tú pones el criterio y la IA escribe el código. Aprenderás a pedir bien, a probar cada
+  versión y a contarle al chat qué ha fallado. Cuando el programa funcione, le pedirás que
+  te lo explique para entender lo que tienes entre manos.
+recursos:
+  - titulo: Peticiones para la IA
+    detalle: Textos listos para copiar y pegar
+  - titulo: Carpeta de trabajo
+    detalle: Estructura y archivos de ejemplo
+  - titulo: Guía de errores frecuentes
+    detalle: Qué decirle al chat cuando algo falla
