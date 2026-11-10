@@ -42,7 +42,7 @@ const canonica = new URL(Astro.url.pathname, Astro.site);
     <header class="cabecera">
       <div class="contenedor cabecera__fila">
         <a class="marca" href="/" aria-label="Galatar, inicio">
-          <Image src={logo} alt="" width={70} height={70} loading="eager" class="marca__logo" />
+          <Image src={logo} alt="" width={70} height={70} densities={[1, 2]} loading="eager" class="marca__logo" />
           <span class="marca__nombre">Galatar</span>
         </a>
         <nav aria-label="Principal">
