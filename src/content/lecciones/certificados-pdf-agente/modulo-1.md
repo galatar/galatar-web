@@ -8,9 +8,9 @@ minutos: 10
 
 ## El problema
 
-Acaba un curso con 120 asistentes y alguien tiene que hacer 120 certificados. Abrir una plantilla, cambiar el nombre, guardar como PDF y repetir son dos horas de trabajo, y a la persona 87 es fácil equivocarse.
+Acaba un curso con 120 asistentes y alguien tiene que hacer los certificados. Abrir una plantilla, cambiar el nombre, guardar como PDF y repetir son dos horas de trabajo, y a la persona 87 es fácil equivocarse.
 
-Un programa en Python lo hace en segundos. En este taller lo va a escribir un **agente de IA** que trabaja directamente en tu ordenador.
+Un programa en Python lo hace en segundos. Puedes verlo (sin IA) en el [taller 1](/talleres/certificados-pdf/). En este taller lo va a escribir un **agente de IA** que trabaja directamente en tu ordenador.
 
 ## Chat o agente
 
@@ -28,14 +28,17 @@ Un agente trabaja **dentro de una carpeta** de tu ordenador. Puede leer y crear 
 
 ## Tú sigues al mando
 
-Que el agente pueda hacer cosas no significa que las haga sin preguntar. Antes de ejecutar un comando o de tocar un archivo, te pide permiso. Tu trabajo es **leer lo que propone y aprobar solo lo que entiendes**. Si no sabes qué hace un comando, pregúntaselo antes de aprobarlo.
+Que el agente pueda hacer cosas no significa que las haga sin preguntar. Antes de ejecutar un comando o de tocar un archivo, te pide permiso. Tu trabajo es **leer lo que propone y aprobar solo lo que entiendes**. Si no sabes qué hace un comando, pregúntaselo antes de aprobarlo. Al principio puede ser un poco más lento, pero irás cogiendo confianza y velocidad a medida que vayas avanzando. 
+
+Un agente IA te da un producto que puede que funcione desde el minuto uno, pero te recomiendo no perder la inquietud, y el disfrute, de aprender. Es lo que te permitirá seguir mejorando.
 
 ## Qué agente usar
 
 Este taller vale para cualquiera. Los más conocidos son:
 
-- **Claude** (aplicación de escritorio de Anthropic, pestaña *Code*).
-- **Codex** (de OpenAI, incluido en los planes de pago de ChatGPT).
+- **Claude Code**: aplicación de escritorio de Anthropic, pestaña *Code*. También en terminal, incluido en los planes de pago de Anthropic.
+- **Codex**: de OpenAI, incluido en los planes de pago de ChatGPT.
+- **OpenCode**: agente de código abierto y gratuito. Tienes que configurar el modelo o los modelos que usarás. 
 - **Cursor**, un editor de código con agente integrado.
 - **GitHub Copilot** en Visual Studio Code, en modo agente.
 
@@ -51,9 +54,9 @@ El agente lee los archivos de la carpeta para trabajar, y lo que lee viaja a los
 certificados-ia/
 ├── INSTRUCCIONES.md     ← lo que el agente debe saber del proyecto
 ├── asistentes.xlsx      ← tus datos (primero inventados)
-├── fondo.png            ← el diseño del certificado
+├── fondo.png            ← imagen de fondo para el certificado
 ├── generar.py           ← el programa que escribe el agente
 └── certificados/        ← un PDF por persona
 ```
 
-> **Si ya has hecho el taller con chat**, verás que el problema es el mismo. Fíjate en qué trabajo desaparece y en cuál sigue siendo tuyo: esa es la diferencia real entre las dos herramientas.
+> **Si ya has hecho el [taller con chat](/talleres/certificados-pdf-chat/)**, verás que el problema es el mismo. Fíjate en qué trabajo desaparece y en cuál sigue siendo tuyo: esa es la diferencia real entre las dos herramientas.
