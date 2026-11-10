@@ -1,5 +1,6 @@
 ---
-import LogoTorre from '../components/LogoTorre.astro';
+import { Image } from 'astro:assets';
+import logo from '../assets/logo-cabecera.png';
 import '../styles/global.css';
 
 interface Props {
@@ -41,7 +42,7 @@ const canonica = new URL(Astro.url.pathname, Astro.site);
     <header class="cabecera">
       <div class="contenedor cabecera__fila">
         <a class="marca" href="/" aria-label="Galatar, inicio">
-          <LogoTorre class="marca__logo" />
+          <Image src={logo} alt="" width={70} height={70} loading="eager" class="marca__logo" />
           <span class="marca__nombre">Galatar</span>
         </a>
         <nav aria-label="Principal">
@@ -108,11 +109,11 @@ const canonica = new URL(Astro.url.pathname, Astro.site);
     color: var(--texto);
   }
 
-  .marca :global(.marca__logo) {
+  .marca__logo {
     display: block;
     flex-shrink: 0;
-    width: 44px;
-    height: 44px;
+    width: 70px;
+    height: 70px;
   }
 
   .marca__nombre {
