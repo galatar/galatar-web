@@ -6,6 +6,8 @@ resumen: Preparas la carpeta, instalas Python guiado por la IA y creas tu Excel 
 minutos: 20
 ---
 
+> **Si el chat te dice que no puedes seguir.** Si en alguno de los pasos tu chat de IA te dice que no puedes seguir por falta de tokens o porque has llegado al límite de mensajes, no has hecho nada mal: los planes gratuitos tienen un tope diario. Puedes esperar unas horas a que se renueve o seguir en otro chat gratuito. Para no empezar de cero, pega en el nuevo chat la petición del paso en el que estabas y cuéntale en una frase lo que ya tienes hecho, por ejemplo: «Ya tengo Python instalado; me falta instalar openpyxl y fpdf2».
+
 ## Paso 1. Crea tu carpeta de trabajo
 
 Crea una carpeta llamada `certificados-ia` en un sitio fácil de encontrar, por ejemplo en *Documentos*. Todo el taller ocurre ahí dentro.

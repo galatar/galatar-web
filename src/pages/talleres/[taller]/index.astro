@@ -13,6 +13,10 @@ const { taller } = Astro.props as { taller: TallerDisponible };
 const ficha = taller.data;
 const modulos = await leccionesDe(taller.id);
 const minutos = modulos.reduce((suma, m) => suma + m.data.minutos, 0);
+const listas = [
+  { titulo: 'Al terminar te llevas', items: ficha.recursos },
+  { titulo: 'Material de referencia', items: ficha.referencia ?? [] },
+].filter((lista) => lista.items.length > 0);
 ---
 
 <Base titulo={ficha.titulo} descripcion={ficha.descripcion}>
@@ -60,23 +64,37 @@ const minutos = modulos.reduce((suma, m) => suma + m.data.minutos, 0);
     </section>
 
     <aside class="lateral">
-      <section class="tarjeta">
-        <h2 class="lateral__titulo">Al terminar te llevas</h2>
-        <ul class="recursos">
-          {
-            ficha.recursos.map((r) => (
-              <li>
-                <Estrella tam={18} />
-                <span>
-                  <strong>{r.titulo}</strong>
-                  <span class="recursos__detalle">{r.detalle}</span>
-                </span>
-              </li>
-            ))
-          }
-        </ul>
-        <p class="aviso">Prototipo: las descargas están en preparación.</p>
-      </section>
+      {
+        listas.map((lista) => (
+          <section class="tarjeta">
+            <h2 class="lateral__titulo">{lista.titulo}</h2>
+            <ul class="recursos">
+              {lista.items.map((r) => (
+                <li>
+                  <Estrella tam={18} />
+                  <span>
+                    <strong>
+                      {r.archivo ? (
+                        <a href={`/descargas/${r.archivo}`} download>
+                          {r.titulo}
+                        </a>
+                      ) : (
+                        r.titulo
+                      )}
+                    </strong>
+                    <span class="recursos__detalle">
+                      {r.archivo ? `${r.detalle} · Descargar (${r.archivo.split('.').pop()})` : r.detalle}
+                    </span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+            {lista.items.some((r) => !r.archivo) && (
+              <p class="aviso">Prototipo: las descargas que faltan están en preparación.</p>
+            )}
+          </section>
+        ))
+      }
 
       <section class="tarjeta">
         <h2 class="lateral__titulo">Cómo está pensado</h2>
@@ -292,6 +310,17 @@ const minutos = modulos.reduce((suma, m) => suma + m.data.minutos, 0);
 
   .recursos strong {
     display: block;
+  }
+
+  .recursos strong a {
+    color: var(--oro-suave);
+    text-decoration: underline;
+    text-decoration-color: var(--linea-fuerte);
+    text-underline-offset: 0.2em;
+  }
+
+  .recursos strong a:hover {
+    color: var(--oro);
   }
 
   .recursos__detalle {

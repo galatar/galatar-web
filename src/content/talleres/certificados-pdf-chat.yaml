@@ -19,7 +19,11 @@ enfoque: >-
 recursos:
   - titulo: Peticiones para la IA
     detalle: Textos listos para copiar y pegar
+    archivo: certificados-pdf-chat/peticiones-para-la-ia.pdf
   - titulo: Carpeta de trabajo
     detalle: Estructura y archivos de ejemplo
-  - titulo: Guía de errores frecuentes
-    detalle: Qué decirle al chat cuando algo falla
+    archivo: certificados-pdf-chat/carpeta-de-trabajo.zip
+referencia:
+  - titulo: Apuntes de Python
+    detalle: Infografía con lo básico de Python, openpyxl y fpdf2
+    archivo: certificados-pdf-chat/apuntes-python.pdf

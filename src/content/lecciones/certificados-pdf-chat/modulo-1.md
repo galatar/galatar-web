@@ -27,6 +27,8 @@ El chat no ve tu ordenador. Todo lo que sabe es lo que tú le escribes, así que
 
 Sirve cualquiera de los gratuitos: ChatGPT, Claude, Gemini o Copilot. Las peticiones de este taller funcionan en todos. Si uno se atasca con un error, pegar la misma conversación en otro suele desbloquearlo.
 
+> **Atención: el chat siempre quiere ayudarte más.** Los chats de IA son muy serviciales y, al terminar cada tarea que les pides, te ofrecerán seguir: «¿Quieres que añada también…?». La primera vez que hagas este taller, no aceptes esas ofertas: vuelve cada vez a las instrucciones del módulo, porque si no puedes acabar en un sitio muy distinto del previsto. Cuando ya lo domines, déjate llevar o explora caminos nuevos para probar más cosas. Pero la primera vez, sigue el guion.
+
 ## La regla de oro: datos inventados
 
 Mientras construyes el programa, **trabaja solo con personas inventadas**. Nunca pegues en el chat nombres, DNI ni correos reales. Lo que escribes en un chat sale de tu ordenador y se guarda en los servidores de otra empresa.

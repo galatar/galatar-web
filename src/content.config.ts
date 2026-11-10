@@ -5,6 +5,9 @@ import { glob } from 'astro/loaders';
 // El nombre del archivo es el slug: aparece en la URL y en el frontmatter de las lecciones.
 // Los talleres "proximamente" solo salen en el mapa de la portada; los "disponible"
 // generan sus páginas y necesitan todos los campos de la ficha.
+// `archivo`: ruta bajo /descargas/ (en public/). Sin él, el recurso sigue «en preparación».
+const recurso = z.object({ titulo: z.string(), detalle: z.string(), archivo: z.string().optional() });
+
 const talleres = defineCollection({
   loader: glob({ base: './src/content/talleres', pattern: '*.{yaml,yml}' }),
   schema: ({ image }) =>
@@ -26,7 +29,9 @@ const talleres = defineCollection({
         nivel: z.string(),
         portada: image(),
         enfoque: z.string(),
-        recursos: z.array(z.object({ titulo: z.string(), detalle: z.string() })),
+        recursos: z.array(recurso),
+        // Material de consulta que no forma parte del recorrido («Material de referencia»).
+        referencia: z.array(recurso).optional(),
       }),
     ]),
 });
