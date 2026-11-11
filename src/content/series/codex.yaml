@@ -1,0 +1,11 @@
+orden: 2
+titulo: Primeros pasos con Codex
+etiqueta: Agente de OpenAI en la terminal
+descripcion: >-
+  Codex es el agente de programación de OpenAI. Como OpenCode, trabaja dentro de tu proyecto
+  desde la terminal, pero entras con tu cuenta de ChatGPT y decides con mucho detalle qué puede
+  hacer sin preguntarte. En esta serie lo instalas, ajustas sus permisos y lo llevas desde la
+  primera pregunta hasta un cambio revisado.
+logo: ../../assets/series/codex.png
+logoAlt: Logo de Codex
+logoOscuro: true
