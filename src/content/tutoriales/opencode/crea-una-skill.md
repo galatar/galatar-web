@@ -15,11 +15,11 @@ La diferencia con `AGENTS.md` es cuándo se lee. `AGENTS.md` se carga en todas l
 
 ## Dónde se guardan
 
-opencode busca skills en estas carpetas, por este orden:
+OpenCode busca skills en estas carpetas, por este orden:
 
 1. `.opencode/skills/<nombre>/SKILL.md`, dentro del proyecto.
 2. `~/.config/opencode/skills/`, para las que quieras en todos tus proyectos.
-3. `.claude/skills/` y `.agents/skills/`, las mismas carpetas que usan otros agentes. Si ya tienes skills hechas para ellos, opencode también las aprovecha.
+3. `.claude/skills/` y `.agents/skills/`, las mismas carpetas que usan otros agentes. Si ya tienes skills hechas para ellos, OpenCode también las aprovecha.
 
 ## El formato
 
@@ -44,7 +44,7 @@ Tres reglas para que cargue:
 
 ## Paso 1. Instala una que ya exista
 
-La forma más rápida de ver cómo funciona es copiar una carpeta de skill que alguien ya haya escrito dentro de `.opencode/skills/` de tu proyecto. Arranca opencode y fíjate en que aparece entre las skills disponibles. Después pídele algo que encaje con su descripción.
+La forma más rápida de ver cómo funciona es copiar una carpeta de skill que alguien ya haya escrito dentro de `.opencode/skills/` de tu proyecto. Arranca OpenCode y fíjate en que aparece entre las skills disponibles. Después pídele algo que encaje con su descripción.
 
 ## Paso 2. Escribe la tuya
 

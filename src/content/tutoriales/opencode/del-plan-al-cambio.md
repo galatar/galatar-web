@@ -9,7 +9,7 @@ nivel: Intermedio
 
 ## Dos modos de trabajo
 
-opencode tiene dos agentes principales y pasas de uno a otro con la tecla `Tab`:
+OpenCode tiene dos agentes principales y pasas de uno a otro con la tecla `Tab`:
 
 - **plan**: lee, investiga y propone. No cambia archivos.
 - **build**: hace los cambios.

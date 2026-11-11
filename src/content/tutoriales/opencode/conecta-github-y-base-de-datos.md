@@ -15,7 +15,7 @@ MCP (Model Context Protocol) es una forma estándar de darle herramientas nuevas
 
 ## Dónde se configuran
 
-En `opencode.json`, bajo la clave `mcp`. Puede ser el de la raíz de tu proyecto o el general, en `~/.config/opencode/`. Después de editarlo, cierra opencode y vuelve a abrirlo.
+En `opencode.json`, bajo la clave `mcp`. Puede ser el de la raíz de tu proyecto o el general, en `~/.config/opencode/`. Después de editarlo, cierra OpenCode y vuelve a abrirlo.
 
 ## Paso 1. GitHub
 
@@ -38,10 +38,21 @@ Añade esto a `opencode.json`:
 
 Fíjate en `{env:GITHUB_TOKEN}`: el token no se escribe en el archivo, se lee de una variable de entorno. Así puedes subir `opencode.json` al repositorio sin regalar tu token. Defínela antes de arrancar:
 
+En Mac y Linux:
+
 ```bash
 export GITHUB_TOKEN="pega-aquí-tu-token"
 opencode
 ```
+
+En Windows, con PowerShell:
+
+```powershell
+$env:GITHUB_TOKEN = "pega-aquí-tu-token"
+opencode
+```
+
+La variable dura mientras tengas abierta esa terminal: si la cierras, tendrás que definirla otra vez. Para el comando `npx` necesitas Node.js, que en Windows ya instalaste en el primer tutorial.
 
 Pruébalo:
 
@@ -49,7 +60,7 @@ Pruébalo:
 Usando github, lista las 5 últimas issues abiertas de tu-usuario/tu-repositorio.
 ```
 
-> Hay varios servidores MCP de GitHub y cambian con frecuencia. Si este no arranca, consulta en la documentación de GitHub cuál recomiendan ahora; la forma de configurarlo en opencode es la misma.
+> Hay varios servidores MCP de GitHub y cambian con frecuencia. Si este no arranca, consulta en la documentación de GitHub cuál recomiendan ahora; la forma de configurarlo en OpenCode es la misma.
 
 El servidor de GitHub trae muchas herramientas. Cuando termines, desactívalo para que no ocupe contexto en las demás sesiones:
 
@@ -86,6 +97,12 @@ Igual que con GitHub, la contraseña va en una variable de entorno:
 
 ```bash
 export MI_BD_PASSWORD="la-contraseña-de-solo-lectura"
+```
+
+En Windows:
+
+```powershell
+$env:MI_BD_PASSWORD = "la-contraseña-de-solo-lectura"
 ```
 
 Pruébalo con una petición prudente:

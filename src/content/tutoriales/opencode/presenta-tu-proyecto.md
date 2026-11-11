@@ -9,7 +9,7 @@ nivel: Intermedio
 
 ## Paso 1. Genera AGENTS.md
 
-Arranca opencode en la raíz del proyecto y escribe:
+Arranca OpenCode en la raíz del proyecto y escribe:
 
 ```text
 /init

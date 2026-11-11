@@ -2,25 +2,27 @@
 serie: opencode
 orden: 2
 titulo: "Tus primeros comandos: @, ! y sesiones"
-resumen: Aprendes a darle archivos al agente, a ejecutar comandos de la terminal sin salir de opencode y a empezar de cero cuando cambias de tarea.
+resumen: Aprendes a darle archivos al agente, a ejecutar comandos de la terminal sin salir de OpenCode y a empezar de cero cuando cambias de tarea.
 minutos: 20
 nivel: Principiante
 ---
 
 ## Antes de empezar
 
-Abre la terminal **dentro de la carpeta de tu proyecto** y arranca opencode allí. El agente trabaja con los archivos de la carpeta donde lo abres, así que el sitio importa.
+Abre la terminal **dentro de la carpeta de tu proyecto** y arranca OpenCode allí. El agente trabaja con los archivos de la carpeta donde lo abres, así que el sitio importa.
 
 ```bash
 cd ruta/a/tu-proyecto
 opencode
 ```
 
+En Windows, la ruta será algo como `cd C:\Users\tu-nombre\Documents\mi-proyecto`. Un truco: en el Explorador de archivos, abre la carpeta, escribe `powershell` en la barra de direcciones y pulsa Intro. Se abre PowerShell ya situada allí.
+
 Cualquier proyecto vale para practicar: una carpeta con scripts de Python, una web o un programa de tu trabajo. Si no tienes ninguno a mano, crea una carpeta con un par de archivos de texto.
 
 ## @ para darle un archivo
 
-Escribe `@` seguido del nombre de un archivo y opencode lo mete en la conversación. Mientras escribes te va sugiriendo nombres.
+Escribe `@` seguido del nombre de un archivo y OpenCode lo mete en la conversación. Mientras escribes te va sugiriendo nombres.
 
 ```text
 Resume en tres líneas qué hay en @README.md
@@ -36,11 +38,13 @@ Si empiezas con `!`, lo que escribes se ejecuta en la terminal y el resultado pa
 !ls -la
 ```
 
+En Windows, si `ls -la` da error, usa `!dir`, que hace lo mismo: lista los archivos de la carpeta.
+
 Ahora pregúntale algo sobre lo que acaba de ver, por ejemplo *¿qué archivo es el más grande?* Ya tiene esa lista delante.
 
-## /new para empezar limpio
+## /new para empezar desde cero
 
-Cada sesión acumula lo que has hablado, los archivos que ha leído y los resultados de los comandos. Cuando cambias de tarea, todo eso estorba: el agente se distrae y gastas más.
+Cada sesión acumula lo que has hablado, los archivos que ha leído y los resultados de los comandos. Cuando cambias de tarea, todo eso estorba: el agente se distrae y gastas más tokens.
 
 ```text
 /new
@@ -60,7 +64,7 @@ También valen `/quit` y `/q`.
 
 Haz estas cuatro cosas seguidas, en este orden:
 
-1. `!ls -la` y pregúntale qué ve.
+1. `!ls -la` (o `!dir` en Windows) y pregúntale qué ve.
 2. `Hola, ¿qué contiene @` y el nombre de un archivo de tu proyecto.
 3. `/new`, y comprueba que ya no recuerda lo anterior.
 4. `/exit`.
