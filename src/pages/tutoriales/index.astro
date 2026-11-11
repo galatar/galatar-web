@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Estrella from '../../components/Estrella.astro';
+import LogoSerie from '../../components/LogoSerie.astro';
 import { seriesConTutoriales, urlTutorial } from '../../lib/tutoriales';
 
 // Cada ficha de src/content/series/ es un bloque; sus tutoriales salen de src/content/tutoriales/<serie>/.
@@ -28,6 +29,9 @@ const duracion = (min: number) =>
       return (
         <section class="contenedor serie" id={serie.id} aria-labelledby={`titulo-${serie.id}`}>
           <header class="serie__cabeza">
+            <div class="serie__logo">
+              <LogoSerie serie={serie} alto={44} />
+            </div>
             <span class="etiqueta">{serie.data.etiqueta}</span>
             <h2 id={`titulo-${serie.id}`}>{serie.data.titulo}</h2>
             <p class="serie__descripcion">{serie.data.descripcion}</p>
@@ -78,6 +82,10 @@ const duracion = (min: number) =>
   .serie__cabeza {
     max-width: var(--ancho-texto);
     margin-bottom: 1.75rem;
+  }
+
+  .serie__logo:not(:empty) {
+    margin-bottom: 1.25rem;
   }
 
   .serie__descripcion {

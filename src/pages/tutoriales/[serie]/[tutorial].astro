@@ -2,6 +2,7 @@
 import { render } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
 import Prosa from '../../../components/Prosa.astro';
+import LogoSerie from '../../../components/LogoSerie.astro';
 import { seriesConTutoriales, urlSerie, urlTutorial, type Serie, type Tutorial } from '../../../lib/tutoriales';
 
 export async function getStaticPaths() {
@@ -33,6 +34,9 @@ const { Content } = await render(tutorial);
     </nav>
 
     <header class="tutorial__cabeza">
+      <div class="tutorial__logo">
+        <LogoSerie serie={serie} alto={28} />
+      </div>
       <span class="etiqueta">
         {numero} de {total} · {tutorial.data.nivel} · {tutorial.data.minutos} min
       </span>
@@ -99,6 +103,10 @@ const { Content } = await render(tutorial);
     margin: 1.5rem 0 2.5rem;
     padding-bottom: 2rem;
     border-bottom: 1px solid var(--linea);
+  }
+
+  .tutorial__logo:not(:empty) {
+    margin-bottom: 1rem;
   }
 
   .tutorial__resumen {

@@ -51,12 +51,18 @@ const lecciones = defineCollection({
 // Una ficha YAML por serie en src/content/series/<slug>.yaml.
 const series = defineCollection({
   loader: glob({ base: './src/content/series', pattern: '*.{yaml,yml}' }),
-  schema: z.object({
-    orden: z.number(),
-    titulo: z.string(),
-    descripcion: z.string(),
-    etiqueta: z.string(),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      orden: z.number(),
+      titulo: z.string(),
+      descripcion: z.string(),
+      etiqueta: z.string(),
+      // Logo de la herramienta (sobre fondo blanco); sale en el índice y en cada tutorial.
+      logo: image().optional(),
+      logoAlt: z.string().optional(),
+      // true si el logo trae su propio fondo oscuro: se muestra tal cual, sin la placa blanca.
+      logoOscuro: z.boolean().optional(),
+    }),
 });
 
 // src/content/tutoriales/<serie>/<slug>.md; la URL es /tutoriales/<serie>/<slug>/.

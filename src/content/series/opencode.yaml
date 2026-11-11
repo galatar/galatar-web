@@ -1,8 +1,10 @@
 orden: 1
-titulo: Primeros pasos con opencode
+titulo: Primeros pasos con OpenCode
 etiqueta: Agente de IA en la terminal
+logo: ../../assets/series/opencode.png
+logoAlt: Logo de OpenCode
 descripcion: >-
-  opencode es un agente de IA de código abierto que trabaja dentro de tu proyecto: lee los
-  archivos, ejecuta comandos y propone cambios desde la terminal. En esta serie lo instalas,
-  lo conectas con OpenRouter y aprendes a usarlo con cabeza, desde la primera pregunta hasta
-  un cambio real planificado y revisado.
+  OpenCode es un agente de IA de código abierto que trabaja dentro de tu proyecto: lee los
+  archivos, ejecuta comandos y propone cambios desde la terminal. En esta serie lo instalas
+  en Windows, Mac o Linux, lo conectas con OpenRouter y aprendes a usarlo con cabeza, desde
+  la primera pregunta hasta un cambio real planificado y revisado.

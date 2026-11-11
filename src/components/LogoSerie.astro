@@ -1,0 +1,43 @@
+---
+import { Image } from 'astro:assets';
+import type { Serie } from '../lib/tutoriales';
+
+// Los logos de herramientas suelen venir en negro sobre blanco: van en una placa clara.
+interface Props {
+  serie: Serie;
+  alto?: number;
+}
+const { serie, alto = 40 } = Astro.props;
+const { logo, logoAlt, logoOscuro } = serie.data;
+// Sin placa, el logo oscuro crece lo que ocupaba el relleno para medir lo mismo que los demás.
+const altoImagen = logoOscuro ? Math.round(alto * 1.5) : alto;
+---
+
+{
+  logo && (
+    <span class:list={['placa', { 'placa--oscura': logoOscuro }]}>
+      <Image src={logo} alt={logoAlt ?? ''} height={altoImagen} densities={[1, 2]} />
+    </span>
+  )
+}
+
+<style>
+  .placa {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.6rem 0.9rem;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 0 1px var(--linea-fuerte);
+  }
+
+  .placa--oscura {
+    padding: 0;
+    background: none;
+    overflow: hidden;
+  }
+
+  .placa :global(img) {
+    width: auto;
+  }
+</style>
