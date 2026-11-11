@@ -9,9 +9,9 @@ nivel: Principiante
 
 ## Elegir modelo
 
-Con `/models` (o el atajo `ctrl+x` y después `m`) ves los modelos disponibles y cambias de uno a otro en mitad de la sesión.
+Con `/models` (o el atajo `Ctrl+X` y después `M`) ves los modelos disponibles y cambias de uno a otro en mitad de la sesión. `F2` salta entre los últimos que has usado.
 
-Si siempre usas el mismo, fíjalo en el archivo `opencode.json` de la raíz de tu proyecto y te ahorras elegirlo cada vez:
+Lo que eliges con `/models` solo vale para esa sesión. Si siempre usas el mismo, fíjalo en el archivo `opencode.json` de la raíz de tu proyecto y te ahorras elegirlo cada vez:
 
 ```json
 {
@@ -20,11 +20,13 @@ Si siempre usas el mismo, fíjalo en el archivo `opencode.json` de la raíz de t
 }
 ```
 
+Si lo quieres para todos tus proyectos, pon lo mismo en el archivo general, `~/.config/opencode/opencode.json`. En Windows, `~` es tu carpeta de usuario: `C:\Users\tu-nombre\.config\opencode\opencode.json`.
+
 ## Elegir potencia
 
 Muchos modelos tienen variantes: `low`, `medium`, `high` y a veces `max`. Cuanto más alta, más piensa antes de responder, y por tanto tarda más y cuesta más.
 
-Pulsa `ctrl+t` para ir pasando de una variante a otra.
+Pulsa `Ctrl+T` para ir pasando de una variante a otra, o escribe `/variants` para elegirla de una lista.
 
 **Haz la prueba.** Pregunta lo mismo dos veces, una con `low` y otra con `high`:
 
@@ -36,7 +38,9 @@ Compara el tiempo, el detalle de la respuesta y el gasto en OpenRouter. Una buen
 
 ## Ver cómo razona
 
-`/thinking` muestra u oculta el razonamiento del modelo. Solo cambia lo que ves en pantalla; la potencia sigue siendo la que hayas elegido con `ctrl+t`.
+Pulsa `Ctrl+P`, escribe `thinking` y elige la opción que despliega o pliega el razonamiento del modelo. Solo cambia lo que ves en pantalla; la potencia sigue siendo la que hayas elegido con `Ctrl+T`.
+
+> Si vienes de OpenCode 1: allí `/thinking` mostraba el razonamiento. En la 2 es otro nombre de `/variants` y sirve para cambiar la potencia.
 
 ## Cuidar el contexto
 
@@ -45,23 +49,35 @@ Una sesión con veinte archivos leídos y montones de resultados de comandos da 
 - `/new`: sesión limpia. Para cambiar de tarea.
 - `/compact`: resume la sesión actual y sigue a partir del resumen. Para cuando estás a mitad de una tarea larga y no quieres perder el hilo.
 
+OpenCode también compacta solo cuando la sesión se acerca al límite del modelo. Hacerlo tú antes te deja elegir el momento.
+
+Y si te surge una duda que no tiene que ver con la tarea, usa `/btw`:
+
+```text
+/btw ¿por qué ha fallado la prueba de antes?
+```
+
+Contesta con lo que ya sabe de la sesión, pero la pregunta y la respuesta no se quedan en la conversación.
+
 ## Volver atrás
 
 - `/sessions` lista tus sesiones anteriores para retomar una.
-- `/undo` deshace el último cambio que hizo el agente en tus archivos y `/redo` lo rehace.
+- `/undo` deshace tu última petición y los cambios que hizo el agente en tus archivos. La petición vuelve a la caja de texto para que la corrijas: si la envías, el cambio queda deshecho.
+- `/redo`, antes de enviar nada, recupera lo que habías deshecho.
 
-> `/undo` y `/redo` solo funcionan si tu proyecto está en un repositorio git. Si todavía no lo está, `git init` en la carpeta del proyecto es la mejor red de seguridad que puedes ponerte antes de dejar que un agente toque nada.
+> `/undo` solo recupera tus archivos si el proyecto está en un repositorio git. Fuera de git, deshace la conversación pero no los archivos. Si todavía no lo está, `git init` en la carpeta del proyecto es la mejor red de seguridad que puedes ponerte antes de dejar que un agente toque nada.
 
 ## Resumen
 
 | Quiero... | Escribo |
 |---|---|
-| Cambiar de modelo | `/models` o `ctrl+x m` |
-| Más o menos potencia | `ctrl+t` |
-| Ver el razonamiento | `/thinking` |
-| Sesión limpia | `/new` o `ctrl+x n` |
-| Resumir y seguir | `/compact` |
-| Retomar una sesión | `/sessions` |
+| Cambiar de modelo | `/models` o `Ctrl+X M` |
+| Más o menos potencia | `Ctrl+T` o `/variants` |
+| Ver el razonamiento | `Ctrl+P` y busco *thinking* |
+| Sesión limpia | `/new` o `Ctrl+X N` |
+| Resumir y seguir | `/compact` o `Ctrl+X C` |
+| Una pregunta al margen | `/btw` |
+| Retomar una sesión | `/sessions` o `Ctrl+X L` |
 | Deshacer un cambio | `/undo` |
-| Salir | `/exit` o `ctrl+x q` |
-| Ver todo lo demás | `/help` |
+| Salir | `/exit` |
+| Ver todo lo demás | `/help` o `Ctrl+P` |

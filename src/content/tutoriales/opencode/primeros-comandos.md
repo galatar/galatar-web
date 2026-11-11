@@ -30,15 +30,21 @@ Resume en tres líneas qué hay en @README.md
 
 Puedes poner varios en la misma petición, y también carpetas (`@src/`). Es la forma más directa de decirle *mira esto*.
 
+Si solo te interesa un trozo, añade las líneas detrás de una almohadilla:
+
+```text
+Explica qué hace @src/informe.py#20-45
+```
+
 ## ! para ejecutar un comando
 
-Si empiezas con `!`, lo que escribes se ejecuta en la terminal y el resultado pasa a la conversación:
+Si escribes `!` al principio de una petición vacía, entras en el modo terminal. Escribe el comando, pulsa Intro y el resultado queda en la sesión:
 
 ```text
 !ls -la
 ```
 
-En Windows, si `ls -la` da error, usa `!dir`, que hace lo mismo: lista los archivos de la carpeta.
+En Windows, si `ls -la` da error, usa `!dir`, que hace lo mismo: lista los archivos de la carpeta. Si cambias de idea antes de pulsar Intro, `Esc` te saca del modo terminal sin ejecutar nada.
 
 Ahora pregúntale algo sobre lo que acaba de ver, por ejemplo *¿qué archivo es el más grande?* Ya tiene esa lista delante.
 
@@ -59,6 +65,10 @@ Cada sesión acumula lo que has hablado, los archivos que ha leído y los result
 ```
 
 También valen `/quit` y `/q`.
+
+## Ctrl+P para todo lo demás
+
+No hace falta memorizar nada más. Escribe `/` y verás la lista de comandos, que se filtra según escribes. `Ctrl+P` abre la paleta con todas las acciones disponibles.
 
 ## Practica
 

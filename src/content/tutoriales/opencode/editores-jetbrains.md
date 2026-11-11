@@ -9,7 +9,7 @@ nivel: Principiante
 
 ## Cómo se integra
 
-Para VS Code y Cursor hay una extensión oficial que abre OpenCode con un atajo. Para los editores de JetBrains (PhpStorm, PyCharm, IntelliJ...) no la hay, pero no hace falta: se usa la **terminal integrada** del editor y el resultado es casi igual de cómodo.
+En los editores de JetBrains (PhpStorm, PyCharm, IntelliJ...) no necesitas instalar nada: se usa la **terminal integrada** del editor y tienes el código y el agente en la misma ventana.
 
 ## Paso 1. Abre el proyecto y su terminal
 
@@ -18,7 +18,7 @@ Para VS Code y Cursor hay una extensión oficial que abre OpenCode con un atajo.
 3. La terminal ya se abre en la raíz del proyecto. Arranca OpenCode:
 
 ```bash
-opencode --model openrouter/meta/muse-spark-1.3-contributor
+opencode
 ```
 
 Ahora tienes el código a un lado y el agente al otro. Cuando OpenCode cambie un archivo, el editor lo recarga.
@@ -34,7 +34,7 @@ Para copiar la ruta de un archivo, haz clic derecho sobre él en el panel del pr
 
 ## Paso 3 (opcional). Usa el editor para escribir peticiones largas
 
-Los comandos `/editor` y `/export` abren un editor de texto para redactar una petición larga o revisar la conversación. Puedes decirle que use el tuyo:
+El comando `/editor` (o `Ctrl+X` y después `E`) abre un editor de texto para redactar una petición larga: escribes, guardas, cierras y el texto vuelve a OpenCode listo para enviar. `/export` hace algo parecido con la conversación entera, para revisarla. Puedes decirle que use tu editor:
 
 En Mac y Linux:
 

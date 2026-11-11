@@ -9,7 +9,7 @@ nivel: Principiante
 
 ## ¿Qué es OpenCode?
 
-OpenCode es un agente de código abierto (puedes ver como está hecho por dentro), disponible 
+OpenCode es un agente de código abierto (puedes ver cómo está hecho por dentro), disponible
 como herramienta de terminal, aplicación de escritorio y aplicación web.
 
 ## Qué necesitas
@@ -18,7 +18,7 @@ como herramienta de terminal, aplicación de escritorio y aplicación web.
 - Una terminal. En Windows, **PowerShell**, que ya viene instalada (búscala en el menú Inicio). En Mac y Linux, la aplicación *Terminal*.
 - Una tarjeta para añadir entre 5 y 10 $ de crédito en OpenRouter. Con eso tienes para muchas horas de pruebas con un modelo barato.
 
-> Esta serie usa OpenCode 1, la versión que se instala con los comandos de abajo. La versión 2 cambia algunos comandos y la configuración.
+> Esta serie usa **OpenCode 2**. Si encuentras guías antiguas con `npm install -g opencode-ai` o con el comando `/init`, son de la versión 1.
 
 ## Paso 1 en Windows. Instala Node.js y OpenCode
 
@@ -29,11 +29,11 @@ En Windows, lo más sencillo es instalar OpenCode con `npm`, el gestor de paquet
 3. Escribe:
 
 ```powershell
-npm install -g opencode-ai
+npm install -g @opencode/cli
 opencode --version
 ```
 
-Si el segundo comando te devuelve un número de versión, ya está instalado.
+Si el segundo comando te devuelve un número que empieza por 2, ya está instalado.
 
 ### Si PowerShell dice que «la ejecución de scripts está deshabilitada»
 
@@ -46,20 +46,39 @@ Es una protección de Windows que bloquea los atajos que crea `npm`. Tienes dos 
 Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 ```
 
+### Si no quieres instalar Node.js
+
+OpenCode también se distribuye como un programa suelto, sin instalador:
+
+1. Descarga el zip de [Windows x64](https://opencode.ai/update/api/latest/cli/opencode/opencode-windows-x64.zip). Es el de casi todos los PC; solo los portátiles con procesador ARM (Snapdragon) necesitan el de [ARM64](https://opencode.ai/update/api/latest/cli/opencode/opencode-windows-arm64.zip).
+2. Descomprímelo en una carpeta fija, por ejemplo `C:\Users\tu-nombre\opencode`.
+3. Añade esa carpeta al `Path`: busca «variables de entorno» en el menú Inicio, abre **Editar las variables de entorno de esta cuenta**, elige `Path`, pulsa **Editar → Nuevo** y pega la ruta.
+4. Abre una PowerShell nueva y comprueba con `opencode --version`.
+
 ### Otra opción: WSL
 
-Si ya usas WSL (el Linux que se instala dentro de Windows), los propios autores de OpenCode lo recomiendan porque funciona algo más fluido con proyectos grandes. En ese caso, abre tu terminal de WSL y sigue los pasos de Mac y Linux.
+Si ya usas WSL (el Linux que se instala dentro de Windows), abre tu terminal de WSL y sigue los pasos de Mac y Linux.
 
 ## Paso 1 en Mac y Linux. Instala OpenCode
 
 Abre la terminal y usa el instalador oficial:
 
 ```bash
-curl -fsSL https://opencode.ai/install | bash
+curl -fsSL https://opencode.ai/v2/install | bash
 opencode --version
 ```
 
-Si el segundo comando te devuelve un número de versión, ya está instalado. También puedes usar `npm install -g opencode-ai`, igual que en Windows, o `brew install anomalyco/tap/opencode` si usas Homebrew.
+Si el segundo comando te devuelve un número que empieza por 2, ya está instalado. También puedes usar `npm install -g @opencode/cli`, igual que en Windows, o `brew install anomalyco/tap/opencode-v2` si usas Homebrew.
+
+## Si ya tenías OpenCode 1
+
+Las dos versiones usan el mismo comando, `opencode`, así que no pueden convivir. Quita la 1 antes de instalar la 2:
+
+- Si la instalaste con npm: `npm uninstall -g opencode-ai`.
+- Si la instalaste con Homebrew: `brew uninstall opencode`.
+- Si usaste el instalador `curl`, no hace falta: el de la 2 sustituye a la 1.
+
+Tu configuración, tus `AGENTS.md` y tus skills siguen sirviendo. La clave de OpenRouter que ya tenías conectada se importa sola la primera vez que abres la 2.
 
 ## Comprueba que se abre
 
@@ -98,7 +117,7 @@ opencode
 1. Busca **OpenRouter** en la lista y pulsa Intro.
 2. Pega tu clave `sk-or-...` y pulsa Intro.
 
-OpenCode guarda la clave en un archivo `auth.json` dentro de tu carpeta de usuario, así que no tendrás que volver a pegarla. Si quieres saber dónde está exactamente, sal de OpenCode y escribe `opencode auth list`: te muestra la ruta y los proveedores conectados.
+OpenCode guarda la clave en su base de datos interna, dentro de tu carpeta de usuario, así que no tendrás que volver a pegarla. Para ver qué proveedores tienes conectados, sal de OpenCode y escribe `opencode auth list`.
 
 ## Paso 4. Elige un modelo y haz la primera pregunta
 
@@ -120,13 +139,7 @@ Si contesta, todo está en su sitio.
 
 > Los modelos y sus precios cambian a menudo. Si este ya no aparece, en `/models` tienes la lista actualizada. Busca uno marcado como barato o con el sufijo `:free` para practicar sin gastar.
 
-## Un atajo para el día a día
-
-Puedes arrancar OpenCode con el modelo ya elegido:
-
-```bash
-opencode --model openrouter/meta/muse-spark-1.3-contributor
-```
+El modelo que eliges con `/models` vale para la sesión en la que estás. En el tutorial 3 verás cómo dejarlo fijado para no elegirlo cada vez.
 
 ## Si algo falla
 
@@ -136,11 +149,13 @@ Si `/models` no muestra el modelo o las respuestas dan error, revisa por este or
 2. Que tienes crédito en OpenRouter.
 3. La página de actividad de OpenRouter: si tus preguntas no aparecen ahí, la petición ni siquiera está llegando.
 
-En Windows, si al escribir `opencode` te dice que no reconoce el comando, cierra PowerShell y ábrela de nuevo. Si sigue igual, repite la instalación con `npm install -g opencode-ai` y fíjate en si muestra algún error.
+En Windows, si al escribir `opencode` te dice que no reconoce el comando, cierra PowerShell y ábrela de nuevo. Si sigue igual, repite la instalación con `npm install -g @opencode/cli` y fíjate en si muestra algún error.
+
+OpenCode 2 funciona con un pequeño servicio en segundo plano que arranca solo. Si alguna vez se queda colgado al abrirse, reinícialo con `opencode service restart`.
 
 ## Comprueba que lo tienes
 
-- `opencode --version` responde con un número.
+- `opencode --version` responde con un número que empieza por 2.
 - Tu clave de OpenRouter está conectada.
 - Tienes crédito visible en OpenRouter.
 - El modelo te ha contestado al menos una vez.

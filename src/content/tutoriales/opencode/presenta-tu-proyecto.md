@@ -1,7 +1,7 @@
 ---
 serie: opencode
 orden: 5
-titulo: Preséntale tu proyecto con /init y siete preguntas
+titulo: Preséntale tu proyecto con AGENTS.md y siete preguntas
 resumen: Generas el archivo AGENTS.md para que el agente entienda tu proyecto y lo pones a prueba con preguntas de menos a más difíciles, sin tocar el código.
 minutos: 30
 nivel: Intermedio
@@ -9,17 +9,19 @@ nivel: Intermedio
 
 ## Paso 1. Genera AGENTS.md
 
-Arranca OpenCode en la raíz del proyecto y escribe:
+`AGENTS.md` es un archivo en la raíz del proyecto donde se explica cómo es: el lenguaje y las librerías que usas, cómo están organizadas las carpetas, cómo se arranca y cómo se prueba. OpenCode lo lee al empezar cada sesión, así que no tienes que explicarle tu proyecto cada vez.
+
+No hace falta que lo escribas tú. Arranca OpenCode en la raíz del proyecto y pídeselo:
 
 ```text
-/init
+Recorre este proyecto y escribe un AGENTS.md en la raíz para que otro agente lo entienda: qué hace, lenguaje y librerías, organización de carpetas, cómo se arranca, cómo se prueba y las convenciones que veas en el código. Sé breve y no inventes nada que no puedas comprobar en los archivos.
 ```
-
-El agente recorre el proyecto y escribe un archivo `AGENTS.md` con lo que ha entendido: el lenguaje y las librerías que usas, cómo están organizadas las carpetas, cómo se arranca y cómo se prueba. A partir de ahí lo lee al empezar cada sesión, así que no tienes que explicarle tu proyecto cada vez.
 
 Ábrelo y léelo. Si algo está mal o falta, corrígelo a mano: es tu archivo. Si el proyecto está en git, súbelo al repositorio para que lo aproveche todo el equipo.
 
-Basta con hacerlo **una vez por proyecto**. Repítelo si el proyecto cambia mucho.
+Basta con hacerlo **una vez por proyecto**. Si el proyecto cambia mucho, pídele que lo actualice.
+
+> En OpenCode 1 esto se hacía con el comando `/init`, que en la versión 2 ya no existe. Y si en tu proyecto hay un `CLAUDE.md` de otro agente, OpenCode 2 no lo lee: pídele que pase su contenido a `AGENTS.md`.
 
 ## Paso 2. Ponlo a prueba
 
@@ -85,5 +87,5 @@ Lo terminarás en el último tutorial de la serie, con el modo plan.
 
 ## Consejos
 
-- Usa la variante `low` para las preguntas 1 y 2 y `high` para la 4 y la 7 (`ctrl+t`). Notarás la diferencia en el razonamiento.
+- Usa la variante `low` para las preguntas 1 y 2 y `high` para la 4 y la 7 (`Ctrl+T`). Notarás la diferencia en el razonamiento.
 - Si se inventa un archivo, díselo: `Ese archivo no existe, vuelve a mirar @src/`. Suele corregirse a la primera.

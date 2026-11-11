@@ -9,22 +9,22 @@ nivel: Intermedio
 
 ## Dos modos de trabajo
 
-OpenCode tiene dos agentes principales y pasas de uno a otro con la tecla `Tab`:
+OpenCode tiene dos agentes principales y pasas de uno a otro con `Shift+Tab` (o eligiéndolo en `/agents`):
 
-- **plan**: lee, investiga y propone. No cambia archivos.
+- **plan**: lee, investiga y propone. No cambia los archivos de tu proyecto.
 - **build**: hace los cambios.
 
 El flujo profesional es siempre el mismo: primero plan, lo revisas, y después build.
 
 ## Paso 1. Pide un plan
 
-Pulsa `Tab` hasta que veas que estás en modo plan y pide el cambio con todo el contexto que tengas:
+Pulsa `Shift+Tab` hasta que veas que estás en modo plan y pide el cambio con todo el contexto que tengas:
 
 ```text
 Quiero añadir una columna «fecha» al informe que genera el proyecto. Mira @src/ y propón qué archivos hay que tocar, en qué orden y cómo lo probaríamos. No escribas código todavía.
 ```
 
-Usa una variante alta (`ctrl+t` hasta `high`): planificar es donde más rinde que el modelo piense.
+Usa una variante alta (`Ctrl+T` hasta `high`): planificar es donde más rinde que el modelo piense.
 
 ## Paso 2. Revisa el plan
 
@@ -38,7 +38,7 @@ Si algo no te convence, díselo y que rehaga el plan. Es mucho más barato corre
 
 ## Paso 3. Que lo haga
 
-Cuando el plan te guste, pulsa `Tab` para pasar a build y escribe:
+Cuando el plan te guste, pulsa `Shift+Tab` para pasar a build y escribe:
 
 ```text
 Adelante con el plan.
@@ -52,17 +52,17 @@ Revisa los cambios conforme los hace. Si el proyecto está en git, `!git diff` t
 /undo
 ```
 
-Vuelve todo a como estaba antes del último cambio. `/redo` lo recupera si te arrepientes. Recuerda que necesitan que el proyecto esté en git.
+Deshace tu última petición y los cambios que trajo, y te devuelve la petición a la caja de texto. Puedes corregirla y enviarla otra vez, o escribir `/redo` antes de enviar nada para recuperar lo que habías deshecho. Recuerda que los archivos solo vuelven atrás si el proyecto está en git.
 
 ## Chuleta de la serie
 
 ```text
-/models      cambiar de modelo        ctrl+t     más o menos potencia
-/thinking    ver el razonamiento      Tab        plan ⇄ build
-/new         sesión limpia            /compact   resumir y seguir
-@archivo     darle un archivo         !comando   ejecutar en la terminal
-/init        crear AGENTS.md          /undo      deshacer (necesita git)
-/exit        salir                    /help      todo lo demás
+/models      cambiar de modelo        Ctrl+T      más o menos potencia
+/new         sesión limpia            Shift+Tab   plan ⇄ build
+/compact     resumir y seguir         /btw        pregunta al margen
+@archivo     darle un archivo         !comando    ejecutar en la terminal
+@skill       cargar una skill         /undo       deshacer (necesita git)
+/exit        salir                    Ctrl+P      todo lo demás
 ```
 
 Y las cinco costumbres que más ayudan:
