@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 1120" width="720" height="1120" role="img" aria-labelledby="titulo desc">
+  <title id="titulo">¿Qué es un agente de IA?</title>
+  <desc id="desc">Un agente de IA trabaja en cinco pasos: recibe un objetivo, lo planifica en pasos, elige qué herramienta usar en cada uno, ejecuta y evalúa el resultado. Si no ha logrado el objetivo, ajusta el plan y da otra vuelta. Sus herramientas son el buscador, los archivos, las APIs, el código y el correo. Un chatbot responde; un agente hace.</desc>
+  <defs>
+    <radialGradient id="brillo" cx="50%" cy="0%" r="75%">
+      <stop offset="0" stop-color="#a01a42" stop-opacity="0.38"/>
+      <stop offset="1" stop-color="#a01a42" stop-opacity="0"/>
+    </radialGradient>
+    <marker id="fl" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#f7cf7a"/>
+    </marker>
+  </defs>
+
+  <!-- Fondo de noche -->
+  <rect width="720" height="1120" fill="#0b0710"/>
+  <rect width="720" height="1120" fill="url(#brillo)"/>
+  <g fill="#fff0d2">
+    <circle cx="610" cy="44" r="1.3" opacity="0.6"/>
+    <circle cx="680" cy="150" r="1.6" fill="#f7cf7a" opacity="0.7"/>
+    <circle cx="200" cy="30" r="1" opacity="0.45"/>
+    <circle cx="24" cy="420" r="1.2" opacity="0.4"/>
+    <circle cx="700" cy="980" r="1.2" opacity="0.4"/>
+    <circle cx="30" cy="1090" r="1.6" fill="#f7cf7a" opacity="0.5"/>
+    <circle cx="420" cy="1105" r="1" opacity="0.35"/>
+  </g>
+
+  <g font-family="Atkinson Hyperlegible, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif">
+    <!-- Marca -->
+    <path d="M52 34 l3.3 9.9 9.9 3.3 -9.9 3.3 -3.3 9.9 -3.3 -9.9 -9.9 -3.3 9.9 -3.3z" fill="#f0b13f"/>
+    <text x="72" y="53" font-size="15" font-weight="700" letter-spacing="2.4" fill="#f0b13f">GALATAR</text>
+
+    <!-- Título -->
+    <text x="360" y="124" text-anchor="middle" font-family="Fraunces, Georgia, 'Times New Roman', serif" font-size="46" font-weight="600" fill="#f3ede4">¿Qué es un agente de IA?</text>
+    <text x="360" y="168" text-anchor="middle" font-size="23" fill="#bdb2b8">Una IA que trabaja hasta cumplir tu encargo</text>
+
+    <!-- ============ LOS CINCO PASOS ============ -->
+    <!-- Flechas entre pasos -->
+    <g stroke="#f7cf7a" stroke-width="2.5" fill="none">
+      <line x1="96" y1="320" x2="96" y2="340" marker-end="url(#fl)"/>
+      <line x1="96" y1="454" x2="96" y2="474" marker-end="url(#fl)"/>
+      <line x1="96" y1="588" x2="96" y2="608" marker-end="url(#fl)"/>
+      <line x1="96" y1="722" x2="96" y2="742" marker-end="url(#fl)"/>
+    </g>
+
+    <!-- Vuelta: de Evalúa a Planifica -->
+    <path d="M612 809 H 662 V 401 H 620" fill="none" stroke="#f0b13f" stroke-width="2.5" stroke-dasharray="8 7" marker-end="url(#fl)"/>
+    <text transform="translate(690 605) rotate(-90)" text-anchor="middle" font-size="19" font-weight="700" letter-spacing="1.5" fill="#f0b13f">SI NO, OTRA VUELTA</text>
+
+    <!-- Paso 1 -->
+    <rect x="40" y="210" width="572" height="110" rx="16" fill="#150c17" stroke="#f0b13f" stroke-opacity="0.3"/>
+    <circle cx="96" cy="265" r="26" fill="#f0b13f"/>
+    <text x="96" y="275" text-anchor="middle" font-size="28" font-weight="700" fill="#1a0d05">1</text>
+    <g fill="none" stroke="#f7cf7a" stroke-width="3">
+      <circle cx="170" cy="265" r="24"/>
+      <circle cx="170" cy="265" r="13"/>
+    </g>
+    <circle cx="170" cy="265" r="4" fill="#f7cf7a"/>
+    <text x="216" y="256" font-size="28" font-weight="700" fill="#f3ede4">Recibe un objetivo</text>
+    <text x="216" y="290" font-size="22" fill="#bdb2b8">Le dices qué quieres lograr</text>
+
+    <!-- Paso 2 -->
+    <rect x="40" y="344" width="572" height="110" rx="16" fill="#150c17" stroke="#f0b13f" stroke-opacity="0.3"/>
+    <circle cx="96" cy="399" r="26" fill="#f0b13f"/>
+    <text x="96" y="409" text-anchor="middle" font-size="28" font-weight="700" fill="#1a0d05">2</text>
+    <g fill="none" stroke="#f7cf7a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="150" y="373" width="40" height="52" rx="5"/>
+      <path d="M161 371 h18 v8 h-18z" fill="#150c17"/>
+      <path d="M158 392 l3 3 5 -6 M158 407 l3 3 5 -6"/>
+      <path d="M172 392 h10 M172 407 h10"/>
+    </g>
+    <text x="216" y="390" font-size="28" font-weight="700" fill="#f3ede4">Planifica</text>
+    <text x="216" y="424" font-size="22" fill="#bdb2b8">Divide el encargo en pasos</text>
+
+    <!-- Paso 3 -->
+    <rect x="40" y="478" width="572" height="110" rx="16" fill="#150c17" stroke="#f0b13f" stroke-opacity="0.3"/>
+    <circle cx="96" cy="533" r="26" fill="#f0b13f"/>
+    <text x="96" y="543" text-anchor="middle" font-size="28" font-weight="700" fill="#1a0d05">3</text>
+    <circle cx="170" cy="533" r="19" fill="none" stroke="#f7cf7a" stroke-width="8" stroke-dasharray="6.4 5.5"/>
+    <circle cx="170" cy="533" r="14" fill="none" stroke="#f7cf7a" stroke-width="3"/>
+    <circle cx="170" cy="533" r="5" fill="none" stroke="#f7cf7a" stroke-width="3"/>
+    <text x="216" y="524" font-size="28" font-weight="700" fill="#f3ede4">Usa herramientas</text>
+    <text x="216" y="558" font-size="22" fill="#bdb2b8">Elige qué usar en cada paso</text>
+
+    <!-- Paso 4 -->
+    <rect x="40" y="612" width="572" height="110" rx="16" fill="#150c17" stroke="#f0b13f" stroke-opacity="0.3"/>
+    <circle cx="96" cy="667" r="26" fill="#f0b13f"/>
+    <text x="96" y="677" text-anchor="middle" font-size="28" font-weight="700" fill="#1a0d05">4</text>
+    <rect x="146" y="645" width="48" height="44" rx="10" fill="none" stroke="#f7cf7a" stroke-width="3"/>
+    <path d="M163 656 L181 667 L163 678z" fill="#f7cf7a"/>
+    <text x="216" y="658" font-size="28" font-weight="700" fill="#f3ede4">Ejecuta</text>
+    <text x="216" y="692" font-size="22" fill="#bdb2b8">Hace el trabajo y ve qué sale</text>
+
+    <!-- Paso 5 -->
+    <rect x="40" y="746" width="572" height="110" rx="16" fill="#1f1221" stroke="#f0b13f" stroke-width="2"/>
+    <circle cx="96" cy="801" r="26" fill="#f0b13f"/>
+    <text x="96" y="811" text-anchor="middle" font-size="28" font-weight="700" fill="#1a0d05">5</text>
+    <circle cx="170" cy="801" r="24" fill="none" stroke="#f7cf7a" stroke-width="3"/>
+    <path d="M159 802 l8 8 14 -16" fill="none" stroke="#f7cf7a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="216" y="792" font-size="28" font-weight="700" fill="#f3ede4">Evalúa</text>
+    <text x="216" y="826" font-size="22" fill="#bdb2b8">¿Ha cumplido el objetivo?</text>
+
+    <!-- ============ HERRAMIENTAS ============ -->
+    <text x="40" y="920" font-size="17" font-weight="700" letter-spacing="2.2" fill="#f0b13f">SUS HERRAMIENTAS</text>
+    <g font-size="21" font-weight="700" fill="#f3ede4" text-anchor="middle">
+      <rect x="40" y="938" width="116" height="52" rx="26" fill="#1f1221" stroke="#8a7f86" stroke-width="1.5"/>
+      <text x="98" y="971">Buscador</text>
+      <rect x="168" y="938" width="116" height="52" rx="26" fill="#1f1221" stroke="#8a7f86" stroke-width="1.5"/>
+      <text x="226" y="971">Archivos</text>
+      <rect x="296" y="938" width="116" height="52" rx="26" fill="#1f1221" stroke="#8a7f86" stroke-width="1.5"/>
+      <text x="354" y="971">APIs</text>
+      <rect x="424" y="938" width="116" height="52" rx="26" fill="#1f1221" stroke="#8a7f86" stroke-width="1.5"/>
+      <text x="482" y="971">Código</text>
+      <rect x="552" y="938" width="128" height="52" rx="26" fill="#1f1221" stroke="#8a7f86" stroke-width="1.5"/>
+      <text x="616" y="971">Correo</text>
+    </g>
+
+    <!-- Cierre -->
+    <line x1="40" y1="1030" x2="680" y2="1030" stroke="#f0b13f" stroke-opacity="0.18"/>
+    <text x="360" y="1080" text-anchor="middle" font-family="Fraunces, Georgia, 'Times New Roman', serif" font-size="32" fill="#f7cf7a">Un chatbot responde. Un agente hace.</text>
+  </g>
+</svg>
