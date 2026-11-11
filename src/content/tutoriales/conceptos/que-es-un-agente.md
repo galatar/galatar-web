@@ -7,6 +7,8 @@ minutos: 5
 nivel: Principiante
 ---
 
+![Un robot de Galatar con casco y cinturón de herramientas, martillo en mano y caja de herramientas, en un taller con osciloscopio, ordenador y soldador](../../../assets/tutoriales/agente-taller.webp)
+
 ## La definición
 
 > Los agentes de IA utilizan modelos de lenguaje para interpretar objetivos, tomar decisiones y ejecutar acciones mediante herramientas externas. Pueden dividir una tarea en pasos, consultar información, utilizar APIs o ejecutar código y evaluar los resultados para continuar hasta completar el objetivo.
@@ -19,7 +21,7 @@ Dicho más corto: un chatbot te contesta y tú haces el trabajo; a un agente le 
 
 1. **Recibe un objetivo.** Le dices qué quieres lograr, no cómo. Por ejemplo: «Genera un certificado en PDF por cada fila de este Excel».
 2. **Planifica.** Divide el encargo en pasos: leer el Excel, preparar la plantilla, rellenarla, guardar los PDF.
-3. **Usa herramientas.** Para cada paso elige la que necesita: abrir un archivo, buscar en internet, llamar a una API, escribir y ejecutar un programa.
+3. **Usa herramientas.** Para cada paso elige la que necesita: abrir un archivo, buscar en internet, lanzar una orden en la terminal, llamar a una API, escribir y ejecutar un programa.
 4. **Ejecuta.** Hace el trabajo y mira qué ha salido.
 5. **Evalúa.** Si el resultado no cumple el objetivo (falta un PDF, sale un error, el nombre está mal), ajusta el plan y vuelve al paso 2.
 
@@ -31,6 +33,7 @@ Un agente no sabe hacer nada por sí mismo fuera de escribir texto. Todo lo dem�
 
 - **Buscador**, para consultar información actual.
 - **Archivos**, para leer y escribir en tu carpeta o tu proyecto.
+- **Terminal**, para moverse por las carpetas y trabajar con archivos a base de órdenes cortas: `ls` para ver qué hay en una carpeta, `mkdir` para crear una, `grep` para buscar un texto dentro de muchos archivos o `sed` para cambiarlo en todos a la vez. Es la herramienta que más usan los agentes de programación como OpenCode o Codex.
 - **APIs**, para hablar con otros servicios: una base de datos, un calendario, una hoja de cálculo en la nube.
 - **Código**, para ejecutar programas y comprobar si funcionan.
 - **Correo**, u otras vías para enviar mensajes.

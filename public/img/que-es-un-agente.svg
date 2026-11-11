@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 1120" width="720" height="1120" role="img" aria-labelledby="titulo desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 1184" width="720" height="1184" role="img" aria-labelledby="titulo desc">
   <title id="titulo">¿Qué es un agente de IA?</title>
-  <desc id="desc">Un agente de IA trabaja en cinco pasos: recibe un objetivo, lo planifica en pasos, elige qué herramienta usar en cada uno, ejecuta y evalúa el resultado. Si no ha logrado el objetivo, ajusta el plan y da otra vuelta. Sus herramientas son el buscador, los archivos, las APIs, el código y el correo. Un chatbot responde; un agente hace.</desc>
+  <desc id="desc">Un agente de IA trabaja en cinco pasos: recibe un objetivo, lo planifica en pasos, elige qué herramienta usar en cada uno, ejecuta y evalúa el resultado. Si no ha logrado el objetivo, ajusta el plan y da otra vuelta. Sus herramientas son el buscador, los archivos, la terminal, las APIs, el código y el correo. Un chatbot responde; un agente hace.</desc>
   <defs>
     <radialGradient id="brillo" cx="50%" cy="0%" r="75%">
       <stop offset="0" stop-color="#a01a42" stop-opacity="0.38"/>
@@ -12,16 +12,16 @@
   </defs>
 
   <!-- Fondo de noche -->
-  <rect width="720" height="1120" fill="#0b0710"/>
-  <rect width="720" height="1120" fill="url(#brillo)"/>
+  <rect width="720" height="1184" fill="#0b0710"/>
+  <rect width="720" height="1184" fill="url(#brillo)"/>
   <g fill="#fff0d2">
     <circle cx="610" cy="44" r="1.3" opacity="0.6"/>
     <circle cx="680" cy="150" r="1.6" fill="#f7cf7a" opacity="0.7"/>
     <circle cx="200" cy="30" r="1" opacity="0.45"/>
     <circle cx="24" cy="420" r="1.2" opacity="0.4"/>
     <circle cx="700" cy="980" r="1.2" opacity="0.4"/>
-    <circle cx="30" cy="1090" r="1.6" fill="#f7cf7a" opacity="0.5"/>
-    <circle cx="420" cy="1105" r="1" opacity="0.35"/>
+    <circle cx="30" cy="1160" r="1.6" fill="#f7cf7a" opacity="0.5"/>
+    <circle cx="420" cy="1170" r="1" opacity="0.35"/>
   </g>
 
   <g font-family="Atkinson Hyperlegible, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif">
@@ -102,20 +102,22 @@
     <!-- ============ HERRAMIENTAS ============ -->
     <text x="40" y="920" font-size="17" font-weight="700" letter-spacing="2.2" fill="#f0b13f">SUS HERRAMIENTAS</text>
     <g font-size="21" font-weight="700" fill="#f3ede4" text-anchor="middle">
-      <rect x="40" y="938" width="116" height="52" rx="26" fill="#1f1221" stroke="#8a7f86" stroke-width="1.5"/>
-      <text x="98" y="971">Buscador</text>
-      <rect x="168" y="938" width="116" height="52" rx="26" fill="#1f1221" stroke="#8a7f86" stroke-width="1.5"/>
-      <text x="226" y="971">Archivos</text>
-      <rect x="296" y="938" width="116" height="52" rx="26" fill="#1f1221" stroke="#8a7f86" stroke-width="1.5"/>
-      <text x="354" y="971">APIs</text>
-      <rect x="424" y="938" width="116" height="52" rx="26" fill="#1f1221" stroke="#8a7f86" stroke-width="1.5"/>
-      <text x="482" y="971">Código</text>
-      <rect x="552" y="938" width="128" height="52" rx="26" fill="#1f1221" stroke="#8a7f86" stroke-width="1.5"/>
-      <text x="616" y="971">Correo</text>
+      <rect x="40" y="938" width="205" height="52" rx="26" fill="#1f1221" stroke="#8a7f86" stroke-width="1.5"/>
+      <text x="142.5" y="971">Buscador</text>
+      <rect x="257" y="938" width="205" height="52" rx="26" fill="#1f1221" stroke="#8a7f86" stroke-width="1.5"/>
+      <text x="359.5" y="971">Archivos</text>
+      <rect x="474" y="938" width="205" height="52" rx="26" fill="#1f1221" stroke="#8a7f86" stroke-width="1.5"/>
+      <text x="576.5" y="971">Terminal</text>
+      <rect x="40" y="1002" width="205" height="52" rx="26" fill="#1f1221" stroke="#8a7f86" stroke-width="1.5"/>
+      <text x="142.5" y="1035">APIs</text>
+      <rect x="257" y="1002" width="205" height="52" rx="26" fill="#1f1221" stroke="#8a7f86" stroke-width="1.5"/>
+      <text x="359.5" y="1035">Código</text>
+      <rect x="474" y="1002" width="205" height="52" rx="26" fill="#1f1221" stroke="#8a7f86" stroke-width="1.5"/>
+      <text x="576.5" y="1035">Correo</text>
     </g>
 
     <!-- Cierre -->
-    <line x1="40" y1="1030" x2="680" y2="1030" stroke="#f0b13f" stroke-opacity="0.18"/>
-    <text x="360" y="1080" text-anchor="middle" font-family="Fraunces, Georgia, 'Times New Roman', serif" font-size="32" fill="#f7cf7a">Un chatbot responde. Un agente hace.</text>
+    <line x1="40" y1="1094" x2="680" y2="1094" stroke="#f0b13f" stroke-opacity="0.18"/>
+    <text x="360" y="1144" text-anchor="middle" font-family="Fraunces, Georgia, 'Times New Roman', serif" font-size="32" fill="#f7cf7a">Un chatbot responde. Un agente hace.</text>
   </g>
 </svg>
