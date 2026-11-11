@@ -1,0 +1,149 @@
+---
+import { render } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import Prosa from '../../../components/Prosa.astro';
+import { seriesConTutoriales, urlSerie, urlTutorial, type Serie, type Tutorial } from '../../../lib/tutoriales';
+
+export async function getStaticPaths() {
+  return (await seriesConTutoriales()).flatMap(({ serie, tutoriales }) =>
+    tutoriales.map((tutorial, i) => ({
+      params: { serie: serie.id, tutorial: tutorial.id.split('/').pop()! },
+      props: { serie, tutorial, numero: i + 1, total: tutoriales.length, anterior: tutoriales[i - 1], siguiente: tutoriales[i + 1] },
+    })),
+  );
+}
+
+const { serie, tutorial, numero, total, anterior, siguiente } = Astro.props as {
+  serie: Serie;
+  tutorial: Tutorial;
+  numero: number;
+  total: number;
+  anterior?: Tutorial;
+  siguiente?: Tutorial;
+};
+const { Content } = await render(tutorial);
+---
+
+<Base titulo={tutorial.data.titulo} descripcion={tutorial.data.resumen}>
+  <div class="contenedor tutorial">
+    <nav class="miga" aria-label="Migas">
+      <a href="/tutoriales/">Tutoriales</a>
+      <span aria-hidden="true">/</span>
+      <a href={urlSerie(serie.id)}>{serie.data.titulo}</a>
+    </nav>
+
+    <header class="tutorial__cabeza">
+      <span class="etiqueta">
+        {numero} de {total} · {tutorial.data.nivel} · {tutorial.data.minutos} min
+      </span>
+      <h1>{tutorial.data.titulo}</h1>
+      <p class="tutorial__resumen">{tutorial.data.resumen}</p>
+    </header>
+
+    <Prosa>
+      <Content />
+    </Prosa>
+
+    <nav class="pasos" aria-label="Tutoriales de la serie">
+      {
+        anterior ? (
+          <a class="pasos__enlace" href={urlTutorial(anterior)}>
+            <span>← Anterior</span>
+            <strong>{anterior.data.titulo}</strong>
+          </a>
+        ) : (
+          <span />
+        )
+      }
+      {
+        siguiente ? (
+          <a class="pasos__enlace pasos__enlace--sig" href={urlTutorial(siguiente)}>
+            <span>Siguiente →</span>
+            <strong>{siguiente.data.titulo}</strong>
+          </a>
+        ) : (
+          <a class="pasos__enlace pasos__enlace--sig" href="/tutoriales/">
+            <span>Fin de la serie →</span>
+            <strong>Ver todos los tutoriales</strong>
+          </a>
+        )
+      }
+    </nav>
+  </div>
+</Base>
+
+<style>
+  .tutorial {
+    max-width: calc(var(--ancho-texto) + 3rem);
+    padding-top: 2.5rem;
+  }
+
+  .miga {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    font-size: 0.92rem;
+    color: var(--texto-3);
+  }
+
+  .miga a {
+    color: var(--texto-2);
+    text-decoration: none;
+  }
+
+  .miga a:hover {
+    color: var(--oro-suave);
+  }
+
+  .tutorial__cabeza {
+    margin: 1.5rem 0 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--linea);
+  }
+
+  .tutorial__resumen {
+    font-size: 1.15rem;
+    color: var(--texto-2);
+    margin: 0;
+  }
+
+  .pasos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+
+  .pasos__enlace {
+    display: grid;
+    gap: 0.2rem;
+    padding: 1rem;
+    border: 1px solid var(--linea);
+    border-radius: var(--radio);
+    text-decoration: none;
+    color: var(--texto);
+  }
+
+  .pasos__enlace:hover {
+    border-color: var(--linea-fuerte);
+    background: rgba(240, 177, 63, 0.05);
+  }
+
+  .pasos__enlace span {
+    font-size: 0.85rem;
+    color: var(--texto-3);
+  }
+
+  .pasos__enlace--sig {
+    text-align: right;
+  }
+
+  @media (max-width: 520px) {
+    .pasos {
+      grid-template-columns: 1fr;
+    }
+    .pasos__enlace--sig {
+      text-align: left;
+    }
+  }
+</style>

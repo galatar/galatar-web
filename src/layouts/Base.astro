@@ -48,6 +48,7 @@ const canonica = new URL(Astro.url.pathname, Astro.site);
         <nav aria-label="Principal">
           <ul class="menu">
             <li><a href="/#mapa">Talleres</a></li>
+            <li><a href="/tutoriales/">Tutoriales</a></li>
             <li><a href="/#metodo">Cómo enseñamos</a></li>
           </ul>
         </nav>
@@ -141,9 +142,12 @@ const canonica = new URL(Astro.url.pathname, Astro.site);
     color: var(--oro-suave);
   }
 
-  @media (max-width: 420px) {
+  .menu a { white-space: nowrap; }
+
+  /* Con tres enlaces no caben logo, nombre y menú: en móvil queda solo el logo. */
+  @media (max-width: 560px) {
     .menu { gap: 0.85rem; font-size: 0.88rem; }
-    .marca__nombre { font-size: 1.2rem; }
+    .marca__nombre { display: none; }
   }
 
   .pie {

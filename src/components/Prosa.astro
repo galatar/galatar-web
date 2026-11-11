@@ -1,0 +1,78 @@
+---
+// Envoltorio del Markdown de lecciones y tutoriales: aquí vive el estilo del texto largo.
+---
+
+<article class="prosa">
+  <slot />
+</article>
+
+<style>
+  .prosa :global(h2) {
+    font-size: 1.55rem;
+    margin-top: 2.2em;
+    color: var(--oro-suave);
+  }
+
+  .prosa :global(h2:first-child) {
+    margin-top: 0;
+  }
+
+  .prosa :global(h3) {
+    margin-top: 1.8em;
+  }
+
+  .prosa :global(ul),
+  .prosa :global(ol) {
+    padding-left: 1.3rem;
+    margin: 0 0 1.25em;
+  }
+
+  .prosa :global(li) {
+    margin-bottom: 0.4em;
+  }
+
+  .prosa :global(li::marker) {
+    color: var(--oro);
+  }
+
+  .prosa :global(strong) {
+    color: var(--texto);
+  }
+
+  .prosa :global(blockquote) {
+    margin: 2rem 0;
+    padding: 1rem 1.25rem;
+    border-left: 3px solid var(--granate);
+    background: rgba(160, 26, 66, 0.12);
+    border-radius: 0 var(--radio) var(--radio) 0;
+    color: var(--texto-2);
+  }
+
+  .prosa :global(blockquote p:last-child) {
+    margin: 0;
+  }
+
+  .prosa :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    margin: 0 0 1.5em;
+    display: block;
+    overflow-x: auto;
+  }
+
+  .prosa :global(th),
+  .prosa :global(td) {
+    border: 1px solid var(--linea);
+    padding: 0.5rem 0.7rem;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  .prosa :global(th) {
+    background: var(--noche-3);
+    color: var(--oro-suave);
+    font-family: var(--f-codigo);
+    font-weight: 600;
+  }
+</style>

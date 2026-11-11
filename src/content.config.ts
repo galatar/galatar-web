@@ -47,4 +47,29 @@ const lecciones = defineCollection({
   }),
 });
 
-export const collections = { talleres, lecciones };
+// Tutoriales: piezas sueltas de consulta, agrupadas en series y sin seguimiento de progreso.
+// Una ficha YAML por serie en src/content/series/<slug>.yaml.
+const series = defineCollection({
+  loader: glob({ base: './src/content/series', pattern: '*.{yaml,yml}' }),
+  schema: z.object({
+    orden: z.number(),
+    titulo: z.string(),
+    descripcion: z.string(),
+    etiqueta: z.string(),
+  }),
+});
+
+// src/content/tutoriales/<serie>/<slug>.md; la URL es /tutoriales/<serie>/<slug>/.
+const tutoriales = defineCollection({
+  loader: glob({ base: './src/content/tutoriales', pattern: '**/*.{md,mdx}' }),
+  schema: z.object({
+    serie: reference('series'),
+    orden: z.number(),
+    titulo: z.string(),
+    resumen: z.string(),
+    minutos: z.number(),
+    nivel: z.enum(['Principiante', 'Intermedio', 'Avanzado']),
+  }),
+});
+
+export const collections = { talleres, lecciones, series, tutoriales };

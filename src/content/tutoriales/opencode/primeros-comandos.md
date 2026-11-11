@@ -1,0 +1,66 @@
+---
+serie: opencode
+orden: 2
+titulo: "Tus primeros comandos: @, ! y sesiones"
+resumen: Aprendes a darle archivos al agente, a ejecutar comandos de la terminal sin salir de opencode y a empezar de cero cuando cambias de tarea.
+minutos: 20
+nivel: Principiante
+---
+
+## Antes de empezar
+
+Abre la terminal **dentro de la carpeta de tu proyecto** y arranca opencode allí. El agente trabaja con los archivos de la carpeta donde lo abres, así que el sitio importa.
+
+```bash
+cd ruta/a/tu-proyecto
+opencode
+```
+
+Cualquier proyecto vale para practicar: una carpeta con scripts de Python, una web o un programa de tu trabajo. Si no tienes ninguno a mano, crea una carpeta con un par de archivos de texto.
+
+## @ para darle un archivo
+
+Escribe `@` seguido del nombre de un archivo y opencode lo mete en la conversación. Mientras escribes te va sugiriendo nombres.
+
+```text
+Resume en tres líneas qué hay en @README.md
+```
+
+Puedes poner varios en la misma petición, y también carpetas (`@src/`). Es la forma más directa de decirle *mira esto*.
+
+## ! para ejecutar un comando
+
+Si empiezas con `!`, lo que escribes se ejecuta en la terminal y el resultado pasa a la conversación:
+
+```text
+!ls -la
+```
+
+Ahora pregúntale algo sobre lo que acaba de ver, por ejemplo *¿qué archivo es el más grande?* Ya tiene esa lista delante.
+
+## /new para empezar limpio
+
+Cada sesión acumula lo que has hablado, los archivos que ha leído y los resultados de los comandos. Cuando cambias de tarea, todo eso estorba: el agente se distrae y gastas más.
+
+```text
+/new
+```
+
+`/new` (o `/clear`) abre una sesión nueva y vacía. La regla es sencilla: **tarea nueva, sesión nueva**.
+
+## /exit para salir
+
+```text
+/exit
+```
+
+También valen `/quit` y `/q`.
+
+## Practica
+
+Haz estas cuatro cosas seguidas, en este orden:
+
+1. `!ls -la` y pregúntale qué ve.
+2. `Hola, ¿qué contiene @` y el nombre de un archivo de tu proyecto.
+3. `/new`, y comprueba que ya no recuerda lo anterior.
+4. `/exit`.
