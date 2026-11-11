@@ -8,13 +8,13 @@ minutos: 10
 
 ## El problema
 
-Acaba un curso con 120 asistentes y alguien tiene que hacer 120 certificados. La forma habitual es abrir una plantilla de Word, copiar el nombre de la primera persona, cambiar el DNI, guardar como PDF y repetir. Son unas dos horas de trabajo y, a la persona 87, es fácil equivocarse con un nombre.
+Acaba un curso con 120 asistentes y alguien tiene que hacer los certificados. Lo habitual es abrir una plantilla de Word, copiar el nombre de la primera persona, cambiar el DNI, guardar como PDF y repetir. Son unas dos horas de trabajo y, a la persona 30, es fácil equivocarse con un nombre.
 
-Ese trabajo tiene tres rasgos que lo delatan: **se repite**, **sigue siempre la misma regla** y **los datos ya están en un Excel**. Cuando una tarea cumple las tres cosas, un programa la hace mejor que tú.
+Ese trabajo tiene tres rasgos que lo delatan: **se repite**, **sigue siempre la misma regla** y **los datos ya están en un Excel**. Cuando una tarea cumple las tres cosas, un programa lo hace mejor y mucho más rápido.
 
 ## El resultado
 
-Al terminar este taller tendrás esto:
+Al terminar este taller tendrás:
 
 - Una hoja de Excel con una fila por persona.
 - Un pequeño programa en Python.
@@ -25,7 +25,7 @@ Añadir más personas no cambia nada: el programa tarda lo mismo con 10 filas qu
 ## El camino
 
 ```text
-asistentes.xlsx  ──►  generar.py  ──►  certificados/
+asistentes-cursos.xlsx  ──►  generar-certificados.py  ──►  certificados/
  (tus datos)         (la receta)       certificado-12345678A.pdf
                                        certificado-87654321B.pdf
                                        ...

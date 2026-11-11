@@ -30,7 +30,7 @@ Un agente trabaja **dentro de una carpeta** de tu ordenador. Puede leer y crear 
 
 Que el agente pueda hacer cosas no significa que las haga sin preguntar. Antes de ejecutar un comando o de tocar un archivo, te pide permiso. Tu trabajo es **leer lo que propone y aprobar solo lo que entiendes**. Si no sabes qué hace un comando, pregúntaselo antes de aprobarlo. Al principio puede ser un poco más lento, pero irás cogiendo confianza y velocidad a medida que vayas avanzando. 
 
-Un agente IA te da un producto que puede que funcione desde el minuto uno, pero te recomiendo no perder la inquietud, y el disfrute, de aprender. Es lo que te permitirá seguir mejorando.
+Un agente de IA te da un producto que puede que funcione desde el minuto uno, pero te recomiendo no perder la inquietud, y el disfrute, de aprender. Es lo que te permitirá seguir mejorando.
 
 ## Qué agente usar
 

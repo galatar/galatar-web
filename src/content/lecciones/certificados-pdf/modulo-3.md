@@ -18,7 +18,7 @@ Si ves algo como `Python 3.12.4`, todo bien. Si en Windows no funciona, prueba c
 
 ## Paso 2. Instala las dos librerías
 
-Una librería es código que otra persona ya escribió y que puedes reutilizar. Necesitamos dos: `openpyxl` para leer Excel y `fpdf2` para escribir PDF.
+Una librería es código que ha escrito alguien y que puedes reutilizar. Necesitamos dos: `openpyxl` para leer Excel y `fpdf2` para escribir PDF.
 
 ```bash
 python3 -m pip install openpyxl fpdf2
@@ -26,7 +26,7 @@ python3 -m pip install openpyxl fpdf2
 
 ## Paso 3. El programa
 
-Crea una carpeta, pon dentro tu `asistentes.xlsx` y un archivo de texto llamado `generar.py` con este contenido:
+Crea una carpeta, pon dentro tu `asistentes-cursos.xlsx` y un archivo de texto llamado `generar-certificados.py` con este contenido:
 
 ```python
 from pathlib import Path
@@ -34,7 +34,7 @@ from pathlib import Path
 from fpdf import FPDF
 from openpyxl import load_workbook
 
-libro = load_workbook("asistentes.xlsx")
+libro = load_workbook("asistentes-cursos.xlsx")
 hoja = libro.active
 
 carpeta = Path("certificados")
@@ -67,7 +67,7 @@ for nombre, dni, curso, horas, fecha in hoja.iter_rows(min_row=2, values_only=Tr
 En la terminal, entra en la carpeta y lanza el programa:
 
 ```bash
-python3 generar.py
+python3 generar-certificados.py
 ```
 
 Verás una línea `Hecho:` por cada persona y aparecerá la carpeta `certificados/` con todos los PDF. Ábrelos. Acabas de hacer en un segundo lo que antes te llevaba una tarde.
@@ -82,4 +82,4 @@ Verás una línea `Hecho:` por cada persona y aparecerá la carpeta `certificado
 - **`f"...{nombre}..."`** es una plantilla de texto: Python sustituye lo que va entre llaves por el valor de cada fila. `{fecha:%d/%m/%Y}` pone la fecha en formato español.
 - **`pdf.output(...)`** guarda el archivo con el DNI en el nombre, así nunca se pisan dos certificados.
 
-> **Si algo falla.** El error más común es `FileNotFoundError: asistentes.xlsx`: la terminal no está en la carpeta del programa. El segundo es un error con la fecha: revisa la regla 5 del módulo 2.
+> **Si algo falla.** El error más común es `FileNotFoundError: asistentes-cursos.xlsx`: la terminal no está en la carpeta del programa. El segundo es un error con la fecha: revisa la regla 5 del módulo 2.
